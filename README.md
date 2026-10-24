@@ -13,8 +13,8 @@ The counterpick requires the stage pool to be enabled. Enabling the pool alone
 never turns the counterpick on. Both features start disabled.
 
 **Status: experimental and unstable until physical-Switch review.** Read
-[Validation](#validation) before relying on it. An emulator-tested build is
-prepared; a public standalone release is not yet published.
+[Validation](#validation) before relying on it. Download the emulator-tested
+build from [Forgejo Releases](https://git.syntaxbyexample.com/intpa/elite-stages-counterpick/releases).
 
 ## Requirements and installation
 
@@ -33,6 +33,8 @@ Build the release NRO (see [Building](#building)) and copy
 ## In-game menu
 
 Press **L + R + D-pad Up** to open or close **Legal Stages + Loser Counterpick**.
+This is a separate window drawn by the shared ImGui host, not a page inside
+another plugin's menu.
 Edits are drafts until saved; closing the window discards unsaved edits.
 
 - **Enable legal stage pool**, the eleven stage checkboxes and **Save stage
@@ -104,11 +106,14 @@ Proven with the current source:
   choice and the accepted rematch used the opponent's Small Battlefield setting.
 - The final pair completed both games and returned to character select after
   the native rematch timeout. Tests used the standalone plugin with the full
-  Training Modpack and no original Elite Legal Stages NRO.
+  Training Modpack and no original Elite Legal Stages NRO. The opponent had
+  no Skyline NRO plugins installed.
 
 Not yet proven:
 
 - Any physical Switch test.
+- Both players running this stage picker, or compatibility with arbitrary
+  opponent mods.
 
 These are targeted gameplay checks, not a long-running stability certification.
 Test-driver navigation and timed-input failures were recorded separately from
