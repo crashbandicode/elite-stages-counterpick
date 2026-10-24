@@ -1,0 +1,20 @@
+[package]
+name = "elite-stages-counterpick-core"
+version = "0.1.0-alpha.1"
+edition = "2021"
+publish = false
+description = "Offline policy and lifecycle core for an accepted-rematch counterpick proposal"
+
+[features]
+default = ["std"]
+std = []
+# Value-only local construction. No native hook is installed.
+native-construction-alpha = []
+
+[lib]
+path = "src/lib.rs"
+
+[profile.release]
+panic = "abort"
+lto = true
+codegen-units = 1

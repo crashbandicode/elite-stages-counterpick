@@ -1,0 +1,35 @@
+[package]
+name = "elite_stages_counterpick"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[features]
+default = []
+# Hooks stay out of the default build; settings remain disabled by default.
+adapt-native = [
+    "elite-stages-counterpick-core/std",
+    "elite-stages-counterpick-core/native-construction-alpha",
+]
+
+[dependencies]
+skyline = { git = "https://github.com/ultimate-research/skyline-rs.git", rev = "6b52d321275639f26c2371d8142550ba0013a5e4" }
+elite-stages-counterpick-core = { path = "..", default-features = false, optional = true }
+
+[patch.crates-io]
+nnsdk = { git = "https://github.com/ultimate-research/nnsdk-rs", rev = "d23f131663ec72a87c84914e6e738999f3ab403d" }
+
+[profile.release]
+panic = "abort"
+lto = true
+opt-level = "z"
+codegen-units = 1
+
+[profile.dev]
+panic = "abort"
+
+[package.metadata.skyline]
+titleid = "01006A800016E000"

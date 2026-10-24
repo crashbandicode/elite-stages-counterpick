@@ -1,0 +1,3032 @@
+{
+  "schema": 1,
+  "retrieved_utc": "2026-10-16T23:32:47.720865+00:00",
+  "publisher": "smash-ultimate/smash-ultimate.github.io",
+  "revision": "c1d97515015b674e0b846cf53b5bb276bf6e108c",
+  "repository_commit_date": "2024-07-11T21:15:48Z",
+  "data_url": "https://raw.githubusercontent.com/smash-ultimate/smash-ultimate.github.io/c1d97515015b674e0b846cf53b5bb276bf6e108c/creator/data.json",
+  "data_sha256": "3c64d468b3ff0690f2ab37dda95b6cf7885cbb562e99f0da533c0dc7114d1515",
+  "richter_html_sha256": "b9b478f9d423e29a38643cb6634a87ba6e15c82e5d296a26010c7b1e2c91536e",
+  "generator_url": "https://github.com/smash-ultimate/smash-ultimate.github.io/blob/c1d97515015b674e0b846cf53b5bb276bf6e108c/creator/char_creator.py",
+  "historical_importer_url": "https://github.com/smash-ultimate/smash-ultimate.github.io/blob/c1d97515015b674e0b846cf53b5bb276bf6e108c/creator/old/stage-scrape.py",
+  "evidence": "Publisher generator renders first three entries as preferred and last three as unfavored. Historical importer reads ordered stage labels from SSBU Stage Guides. Importer history does not prove every row was produced by that script.",
+  "confidence": "low",
+  "uncertainty": [
+    "No votes, sample counts, individual scores or collection dates supplied.",
+    "No claim of matchup-specific or current optimal play.",
+    "Source omits Northern Cave and Hollow Bastion; do not append them as if ranked.",
+    "Original collection lineage and redistribution terms need review before publishing the derived snapshot."
+  ],
+  "policy": "Preserve the recorded order after excluding stages outside the audited Elite pool. Richter is a separately attributed three-stage subset from the publisher page, not an assumed Simon clone. Empty/missing/disjoint profiles delegate to baseline. User may replace any order.",
+  "rows": [
+    {
+      "fighter": "mario",
+      "source_label": "MARIO",
+      "source_stages": [
+        "Yoshi's Story",
+        "Battlefield",
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Smashville",
+        "Town and City",
+        "Lylat Cruise",
+        "Unova",
+        "Yoshi's Island",
+        "Kalos",
+        "Final Destination"
+      ],
+      "ranking": [
+        "yoshi_cartboard",
+        "battle_field",
+        "battle_field_s",
+        "poke_stadium2",
+        "animal_village",
+        "animal_city",
+        "fox_lylatcruise",
+        "poke_kalos",
+        "end"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/mario.html"
+    },
+    {
+      "fighter": "donkey_kong",
+      "source_label": "DONKEY KONG",
+      "source_stages": [
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Yoshi's Story",
+        "Battlefield",
+        "Smashville",
+        "Unova",
+        "Town and City",
+        "Final Destination",
+        "Yoshi's Island",
+        "Lylat Cruise",
+        "Kalos"
+      ],
+      "ranking": [
+        "battle_field_s",
+        "poke_stadium2",
+        "yoshi_cartboard",
+        "battle_field",
+        "animal_village",
+        "animal_city",
+        "end",
+        "fox_lylatcruise",
+        "poke_kalos"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/donkey%20kong.html"
+    },
+    {
+      "fighter": "link",
+      "source_label": "LINK",
+      "source_stages": [
+        "Kalos",
+        "Final Destination",
+        "Town and City",
+        "Pokemon Stadium 2",
+        "Smashville",
+        "Small Battlefield",
+        "Unova",
+        "Yoshi's Story",
+        "Lylat Cruise",
+        "Battlefield",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "poke_kalos",
+        "end",
+        "animal_city",
+        "poke_stadium2",
+        "animal_village",
+        "battle_field_s",
+        "yoshi_cartboard",
+        "fox_lylatcruise",
+        "battle_field"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/link.html"
+    },
+    {
+      "fighter": "samus",
+      "source_label": "SAMUS",
+      "source_stages": [
+        "Battlefield",
+        "Kalos",
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Small Battlefield",
+        "Final Destination",
+        "Yoshi's Story",
+        "Unova",
+        "Lylat Cruise",
+        "Smashville",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "battle_field",
+        "poke_kalos",
+        "poke_stadium2",
+        "animal_city",
+        "battle_field_s",
+        "end",
+        "yoshi_cartboard",
+        "fox_lylatcruise",
+        "animal_village"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/samus.html"
+    },
+    {
+      "fighter": "dark_samus",
+      "source_label": "DARK SAMUS",
+      "source_stages": [
+        "Battlefield",
+        "Kalos",
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Small Battlefield",
+        "Final Destination",
+        "Yoshi's Story",
+        "Unova",
+        "Lylat Cruise",
+        "Smashville",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "battle_field",
+        "poke_kalos",
+        "poke_stadium2",
+        "animal_city",
+        "battle_field_s",
+        "end",
+        "yoshi_cartboard",
+        "fox_lylatcruise",
+        "animal_village"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/dark%20samus.html"
+    },
+    {
+      "fighter": "yoshi",
+      "source_label": "YOSHI",
+      "source_stages": [
+        "Battlefield",
+        "Yoshi's Story",
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Lylat Cruise",
+        "Final Destination",
+        "Unova",
+        "Town and City",
+        "Smashville",
+        "Yoshi's Island",
+        "Kalos"
+      ],
+      "ranking": [
+        "battle_field",
+        "yoshi_cartboard",
+        "battle_field_s",
+        "poke_stadium2",
+        "fox_lylatcruise",
+        "end",
+        "animal_city",
+        "animal_village",
+        "poke_kalos"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/yoshi.html"
+    },
+    {
+      "fighter": "kirby",
+      "source_label": "KIRBY",
+      "source_stages": [
+        "Final Destination",
+        "Smashville",
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Small Battlefield",
+        "Yoshi's Island",
+        "Unova",
+        "Kalos",
+        "Yoshi's Story",
+        "Lylat Cruise",
+        "Battlefield"
+      ],
+      "ranking": [
+        "end",
+        "animal_village",
+        "poke_stadium2",
+        "animal_city",
+        "battle_field_s",
+        "poke_kalos",
+        "yoshi_cartboard",
+        "fox_lylatcruise",
+        "battle_field"
+      ],
+      "excluded_stages": [
+        "Yoshi's Island",
+        "Unova"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/kirby.html"
+    },
+    {
+      "fighter": "fox",
+      "source_label": "FOX",
+      "source_stages": [
+        "Battlefield",
+        "Pokemon Stadium 2",
+        "Small Battlefield",
+        "Final Destination",
+        "Town and City",
+        "Kalos",
+        "Smashville",
+        "Yoshi's Story",
+        "Unova",
+        "Lylat Cruise",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "battle_field",
+        "poke_stadium2",
+        "battle_field_s",
+        "end",
+        "animal_city",
+        "poke_kalos",
+        "animal_village",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/fox.html"
+    },
+    {
+      "fighter": "pikachu",
+      "source_label": "PIKACHU",
+      "source_stages": [
+        "Kalos",
+        "Final Destination",
+        "Town and City",
+        "Smashville",
+        "Yoshi's Story",
+        "Lylat Cruise",
+        "Unova",
+        "Pokemon Stadium 2",
+        "Yoshi's Island",
+        "Small Battlefield",
+        "Battlefield"
+      ],
+      "ranking": [
+        "poke_kalos",
+        "end",
+        "animal_city",
+        "animal_village",
+        "yoshi_cartboard",
+        "fox_lylatcruise",
+        "poke_stadium2",
+        "battle_field_s",
+        "battle_field"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/pikachu.html"
+    },
+    {
+      "fighter": "luigi",
+      "source_label": "LUIGI",
+      "source_stages": [
+        "Smashville",
+        "Final Destination",
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Kalos",
+        "Unova",
+        "Battlefield",
+        "Yoshi's Story",
+        "Yoshi's Island",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "animal_village",
+        "end",
+        "battle_field_s",
+        "poke_stadium2",
+        "animal_city",
+        "poke_kalos",
+        "battle_field",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/luigi.html"
+    },
+    {
+      "fighter": "ness",
+      "source_label": "NESS",
+      "source_stages": [
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Battlefield",
+        "Smashville",
+        "Town and City",
+        "Final Destination",
+        "Kalos",
+        "Yoshi's Story",
+        "Unova",
+        "Yoshi's Island",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "battle_field_s",
+        "poke_stadium2",
+        "battle_field",
+        "animal_village",
+        "animal_city",
+        "end",
+        "poke_kalos",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/ness.html"
+    },
+    {
+      "fighter": "captain_falcon",
+      "source_label": "CAPTAIN FALCON",
+      "source_stages": [
+        "Battlefield",
+        "Small Battlefield",
+        "Kalos",
+        "Yoshi's Story",
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Smashville",
+        "Unova",
+        "Yoshi's Island",
+        "Final Destination",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "battle_field",
+        "battle_field_s",
+        "poke_kalos",
+        "yoshi_cartboard",
+        "poke_stadium2",
+        "animal_city",
+        "animal_village",
+        "end",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/captain%20falcon.html"
+    },
+    {
+      "fighter": "jigglypuff",
+      "source_label": "JIGGLYPUFF",
+      "source_stages": [
+        "Small Battlefield",
+        "Battlefield",
+        "Smashville",
+        "Pokemon Stadium 2",
+        "Final Destination",
+        "Unova",
+        "Lylat Cruise",
+        "Yoshi's Story",
+        "Kalos",
+        "Town and City",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "battle_field_s",
+        "battle_field",
+        "animal_village",
+        "poke_stadium2",
+        "end",
+        "fox_lylatcruise",
+        "yoshi_cartboard",
+        "poke_kalos",
+        "animal_city"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/jigglypuff.html"
+    },
+    {
+      "fighter": "peach",
+      "source_label": "PEACH",
+      "source_stages": [
+        "Final Destination",
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Kalos",
+        "Smashville",
+        "Unova",
+        "Small Battlefield",
+        "Battlefield",
+        "Yoshi's Story",
+        "Lylat Cruise",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "end",
+        "poke_stadium2",
+        "animal_city",
+        "poke_kalos",
+        "animal_village",
+        "battle_field_s",
+        "battle_field",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/peach.html"
+    },
+    {
+      "fighter": "daisy",
+      "source_label": "DAISY",
+      "source_stages": [
+        "Final Destination",
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Kalos",
+        "Smashville",
+        "Unova",
+        "Small Battlefield",
+        "Battlefield",
+        "Yoshi's Story",
+        "Lylat Cruise",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "end",
+        "poke_stadium2",
+        "animal_city",
+        "poke_kalos",
+        "animal_village",
+        "battle_field_s",
+        "battle_field",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/daisy.html"
+    },
+    {
+      "fighter": "bowser",
+      "source_label": "BOWSER",
+      "source_stages": [
+        "Small Battlefield",
+        "Yoshi's Story",
+        "Battlefield",
+        "Smashville",
+        "Unova",
+        "Town and City",
+        "Pokemon Stadium 2",
+        "Kalos",
+        "Yoshi's Island",
+        "Final Destination",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "battle_field_s",
+        "yoshi_cartboard",
+        "battle_field",
+        "animal_village",
+        "animal_city",
+        "poke_stadium2",
+        "poke_kalos",
+        "end",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/bowser.html"
+    },
+    {
+      "fighter": "ice_climbers",
+      "source_label": "ICE CLIMBERS",
+      "source_stages": [
+        "Final Destination",
+        "Smashville",
+        "Pokemon Stadium 2",
+        "Battlefield",
+        "Small Battlefield",
+        "Kalos",
+        "Unova",
+        "Yoshi's Island",
+        "Lylat Cruise",
+        "Yoshi's Story",
+        "Town and City"
+      ],
+      "ranking": [
+        "end",
+        "animal_village",
+        "poke_stadium2",
+        "battle_field",
+        "battle_field_s",
+        "poke_kalos",
+        "fox_lylatcruise",
+        "yoshi_cartboard",
+        "animal_city"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/ice%20climbers.html"
+    },
+    {
+      "fighter": "sheik",
+      "source_label": "SHEIK",
+      "source_stages": [
+        "Final Destination",
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Kalos",
+        "Small Battlefield",
+        "Smashville",
+        "Battlefield",
+        "Lylat Cruise",
+        "Unova",
+        "Yoshi's Story",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "end",
+        "poke_stadium2",
+        "animal_city",
+        "poke_kalos",
+        "battle_field_s",
+        "animal_village",
+        "battle_field",
+        "fox_lylatcruise",
+        "yoshi_cartboard"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/sheik.html"
+    },
+    {
+      "fighter": "zelda",
+      "source_label": "ZELDA",
+      "source_stages": [
+        "Final Destination",
+        "Small Battlefield",
+        "Smashville",
+        "Kalos",
+        "Pokemon Stadium 2",
+        "Battlefield",
+        "Town and City",
+        "Lylat Cruise",
+        "Yoshi's Story",
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "end",
+        "battle_field_s",
+        "animal_village",
+        "poke_kalos",
+        "poke_stadium2",
+        "battle_field",
+        "animal_city",
+        "fox_lylatcruise",
+        "yoshi_cartboard"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/zelda.html"
+    },
+    {
+      "fighter": "dr_mario",
+      "source_label": "DR. MARIO",
+      "source_stages": [
+        "Small Battlefield",
+        "Smashville",
+        "Pokemon Stadium 2",
+        "Final Destination",
+        "Unova",
+        "Yoshi's Story",
+        "Lylat Cruise",
+        "Kalos",
+        "Battlefield",
+        "Town and City",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "battle_field_s",
+        "animal_village",
+        "poke_stadium2",
+        "end",
+        "yoshi_cartboard",
+        "fox_lylatcruise",
+        "poke_kalos",
+        "battle_field",
+        "animal_city"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/dr.%20mario.html"
+    },
+    {
+      "fighter": "pichu",
+      "source_label": "PICHU",
+      "source_stages": [
+        "Kalos",
+        "Final Destination",
+        "Small Battlefield",
+        "Town and City",
+        "Smashville",
+        "Pokemon Stadium 2",
+        "Unova",
+        "Battlefield",
+        "Yoshi's Island",
+        "Yoshi's Story",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "poke_kalos",
+        "end",
+        "battle_field_s",
+        "animal_city",
+        "animal_village",
+        "poke_stadium2",
+        "battle_field",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/pichu.html"
+    },
+    {
+      "fighter": "falco",
+      "source_label": "FALCO",
+      "source_stages": [
+        "Battlefield",
+        "Yoshi's Story",
+        "Small Battlefield",
+        "Smashville",
+        "Pokemon Stadium 2",
+        "Lylat Cruise",
+        "Town and City",
+        "Unova",
+        "Final Destination",
+        "Yoshi's Island",
+        "Kalos"
+      ],
+      "ranking": [
+        "battle_field",
+        "yoshi_cartboard",
+        "battle_field_s",
+        "animal_village",
+        "poke_stadium2",
+        "fox_lylatcruise",
+        "animal_city",
+        "end",
+        "poke_kalos"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/falco.html"
+    },
+    {
+      "fighter": "marth",
+      "source_label": "MARTH",
+      "source_stages": [
+        "Battlefield",
+        "Smashville",
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Yoshi's Story",
+        "Final Destination",
+        "Unova",
+        "Kalos",
+        "Lylat Cruise",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "battle_field",
+        "animal_village",
+        "battle_field_s",
+        "poke_stadium2",
+        "animal_city",
+        "yoshi_cartboard",
+        "end",
+        "poke_kalos",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/marth.html"
+    },
+    {
+      "fighter": "lucina",
+      "source_label": "LUCINA",
+      "source_stages": [
+        "Battlefield",
+        "Smashville",
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Yoshi's Story",
+        "Final Destination",
+        "Unova",
+        "Kalos",
+        "Lylat Cruise",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "battle_field",
+        "animal_village",
+        "battle_field_s",
+        "poke_stadium2",
+        "animal_city",
+        "yoshi_cartboard",
+        "end",
+        "poke_kalos",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/lucina.html"
+    },
+    {
+      "fighter": "young_link",
+      "source_label": "YOUNG LINK",
+      "source_stages": [
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Unova",
+        "Kalos",
+        "Final Destination",
+        "Lylat Cruise",
+        "Smashville",
+        "Yoshi's Story",
+        "Yoshi's Island",
+        "Battlefield",
+        "Small Battlefield"
+      ],
+      "ranking": [
+        "poke_stadium2",
+        "animal_city",
+        "poke_kalos",
+        "end",
+        "fox_lylatcruise",
+        "animal_village",
+        "yoshi_cartboard",
+        "battle_field",
+        "battle_field_s"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/young%20link.html"
+    },
+    {
+      "fighter": "ganondorf",
+      "source_label": "GANONDORF",
+      "source_stages": [
+        "Smashville",
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Battlefield",
+        "Lylat Cruise",
+        "Unova",
+        "Yoshi's Story",
+        "Kalos",
+        "Yoshi's Island",
+        "Final Destination",
+        "Town and City"
+      ],
+      "ranking": [
+        "animal_village",
+        "battle_field_s",
+        "poke_stadium2",
+        "battle_field",
+        "fox_lylatcruise",
+        "yoshi_cartboard",
+        "poke_kalos",
+        "end",
+        "animal_city"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/ganondorf.html"
+    },
+    {
+      "fighter": "mewtwo",
+      "source_label": "MEWTWO",
+      "source_stages": [
+        "Town and City",
+        "Battlefield",
+        "Pokemon Stadium 2",
+        "Kalos",
+        "Final Destination",
+        "Smashville",
+        "Small Battlefield",
+        "Unova",
+        "Yoshi's Story",
+        "Yoshi's Island",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "animal_city",
+        "battle_field",
+        "poke_stadium2",
+        "poke_kalos",
+        "end",
+        "animal_village",
+        "battle_field_s",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/mewtwo.html"
+    },
+    {
+      "fighter": "roy",
+      "source_label": "ROY",
+      "source_stages": [
+        "Town and City",
+        "Small Battlefield",
+        "Smashville",
+        "Battlefield",
+        "Yoshi's Story",
+        "Pokemon Stadium 2",
+        "Unova",
+        "Final Destination",
+        "Kalos",
+        "Lylat Cruise",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "animal_city",
+        "battle_field_s",
+        "animal_village",
+        "battle_field",
+        "yoshi_cartboard",
+        "poke_stadium2",
+        "end",
+        "poke_kalos",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/roy.html"
+    },
+    {
+      "fighter": "chrom",
+      "source_label": "CHROM",
+      "source_stages": [
+        "Town and City",
+        "Battlefield",
+        "Pokemon Stadium 2",
+        "Small Battlefield",
+        "Smashville",
+        "Yoshi's Story",
+        "Unova",
+        "Final Destination",
+        "Yoshi's Island",
+        "Lylat Cruise",
+        "Kalos"
+      ],
+      "ranking": [
+        "animal_city",
+        "battle_field",
+        "poke_stadium2",
+        "battle_field_s",
+        "animal_village",
+        "yoshi_cartboard",
+        "end",
+        "fox_lylatcruise",
+        "poke_kalos"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/chrom.html"
+    },
+    {
+      "fighter": "mr_game_and_watch",
+      "source_label": "MR. GAME AND WATCH",
+      "source_stages": [
+        "Battlefield",
+        "Smashville",
+        "Small Battlefield",
+        "Yoshi's Story",
+        "Final Destination",
+        "Pokemon Stadium 2",
+        "Unova",
+        "Town and City",
+        "Lylat Cruise",
+        "Yoshi's Island",
+        "Kalos"
+      ],
+      "ranking": [
+        "battle_field",
+        "animal_village",
+        "battle_field_s",
+        "yoshi_cartboard",
+        "end",
+        "poke_stadium2",
+        "animal_city",
+        "fox_lylatcruise",
+        "poke_kalos"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/mr.%20game%20and%20watch.html"
+    },
+    {
+      "fighter": "meta_knight",
+      "source_label": "META KNIGHT",
+      "source_stages": [
+        "Pokemon Stadium 2",
+        "Final Destination",
+        "Town and City",
+        "Kalos",
+        "Small Battlefield",
+        "Yoshi's Story",
+        "Unova",
+        "Battlefield",
+        "Lylat Cruise",
+        "Smashville",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "poke_stadium2",
+        "end",
+        "animal_city",
+        "poke_kalos",
+        "battle_field_s",
+        "yoshi_cartboard",
+        "battle_field",
+        "fox_lylatcruise",
+        "animal_village"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/meta%20knight.html"
+    },
+    {
+      "fighter": "pit",
+      "source_label": "PIT",
+      "source_stages": [
+        "Battlefield",
+        "Unova",
+        "Small Battlefield",
+        "Yoshi's Story",
+        "Pokemon Stadium 2",
+        "Yoshi's Island",
+        "Final Destination",
+        "Town and City",
+        "Lylat Cruise",
+        "Smashville",
+        "Kalos"
+      ],
+      "ranking": [
+        "battle_field",
+        "battle_field_s",
+        "yoshi_cartboard",
+        "poke_stadium2",
+        "end",
+        "animal_city",
+        "fox_lylatcruise",
+        "animal_village",
+        "poke_kalos"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/pit.html"
+    },
+    {
+      "fighter": "dark_pit",
+      "source_label": "DARK PIT",
+      "source_stages": [
+        "Yoshi's Story",
+        "Small Battlefield",
+        "Battlefield",
+        "Final Destination",
+        "Unova",
+        "Yoshi's Island",
+        "Town and City",
+        "Smashville",
+        "Pokemon Stadium 2",
+        "Lylat Cruise",
+        "Kalos"
+      ],
+      "ranking": [
+        "yoshi_cartboard",
+        "battle_field_s",
+        "battle_field",
+        "end",
+        "animal_city",
+        "animal_village",
+        "poke_stadium2",
+        "fox_lylatcruise",
+        "poke_kalos"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/dark%20pit.html"
+    },
+    {
+      "fighter": "zero_suit_samus",
+      "source_label": "ZERO SUIT SAMUS",
+      "source_stages": [
+        "Battlefield",
+        "Yoshi's Story",
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Yoshi's Island",
+        "Smashville",
+        "Unova",
+        "Town and City",
+        "Final Destination",
+        "Lylat Cruise",
+        "Kalos"
+      ],
+      "ranking": [
+        "battle_field",
+        "yoshi_cartboard",
+        "battle_field_s",
+        "poke_stadium2",
+        "animal_village",
+        "animal_city",
+        "end",
+        "fox_lylatcruise",
+        "poke_kalos"
+      ],
+      "excluded_stages": [
+        "Yoshi's Island",
+        "Unova"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/zero%20suit%20samus.html"
+    },
+    {
+      "fighter": "wario",
+      "source_label": "WARIO",
+      "source_stages": [
+        "Battlefield",
+        "Pokemon Stadium 2",
+        "Small Battlefield",
+        "Smashville",
+        "Town and City",
+        "Yoshi's Story",
+        "Unova",
+        "Lylat Cruise",
+        "Yoshi's Island",
+        "Final Destination",
+        "Kalos"
+      ],
+      "ranking": [
+        "battle_field",
+        "poke_stadium2",
+        "battle_field_s",
+        "animal_village",
+        "animal_city",
+        "yoshi_cartboard",
+        "fox_lylatcruise",
+        "end",
+        "poke_kalos"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/wario.html"
+    },
+    {
+      "fighter": "snake",
+      "source_label": "SNAKE",
+      "source_stages": [
+        "Battlefield",
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Lylat Cruise",
+        "Smashville",
+        "Unova",
+        "Town and City",
+        "Yoshi's Island",
+        "Final Destination",
+        "Yoshi's Story",
+        "Kalos"
+      ],
+      "ranking": [
+        "battle_field",
+        "battle_field_s",
+        "poke_stadium2",
+        "fox_lylatcruise",
+        "animal_village",
+        "animal_city",
+        "end",
+        "yoshi_cartboard",
+        "poke_kalos"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/snake.html"
+    },
+    {
+      "fighter": "ike",
+      "source_label": "IKE",
+      "source_stages": [
+        "Battlefield",
+        "Yoshi's Story",
+        "Pokemon Stadium 2",
+        "Smashville",
+        "Small Battlefield",
+        "Unova",
+        "Town and City",
+        "Kalos",
+        "Lylat Cruise",
+        "Final Destination",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "battle_field",
+        "yoshi_cartboard",
+        "poke_stadium2",
+        "animal_village",
+        "battle_field_s",
+        "animal_city",
+        "poke_kalos",
+        "fox_lylatcruise",
+        "end"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/ike.html"
+    },
+    {
+      "fighter": "squirtle",
+      "source_label": "Squirtle",
+      "source_stages": [
+        "Battlefield",
+        "Pokemon Stadium 2",
+        "Yoshi's Story",
+        "Smashville",
+        "Town and City",
+        "Final Destination",
+        "Kalos",
+        "Lylat Cruise",
+        "Unova",
+        "Yoshi's Island",
+        "Small Battlefield"
+      ],
+      "ranking": [
+        "battle_field",
+        "poke_stadium2",
+        "yoshi_cartboard",
+        "animal_village",
+        "animal_city",
+        "end",
+        "poke_kalos",
+        "fox_lylatcruise",
+        "battle_field_s"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/squirtle.html"
+    },
+    {
+      "fighter": "ivysaur",
+      "source_label": "Ivysaur",
+      "source_stages": [
+        "Small Battlefield",
+        "Battlefield",
+        "Yoshi's Story",
+        "Pokemon Stadium 2",
+        "Smashville",
+        "Town and City",
+        "Yoshi's Island",
+        "Lylat Cruise",
+        "Unova",
+        "Final Destination",
+        "Kalos"
+      ],
+      "ranking": [
+        "battle_field_s",
+        "battle_field",
+        "yoshi_cartboard",
+        "poke_stadium2",
+        "animal_village",
+        "animal_city",
+        "fox_lylatcruise",
+        "end",
+        "poke_kalos"
+      ],
+      "excluded_stages": [
+        "Yoshi's Island",
+        "Unova"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/ivysaur.html"
+    },
+    {
+      "fighter": "charizard",
+      "source_label": "Charizard",
+      "source_stages": [
+        "Pokemon Stadium 2",
+        "Yoshi's Story",
+        "Battlefield",
+        "Smashville",
+        "Small Battlefield",
+        "Town and City",
+        "Unova",
+        "Yoshi's Island",
+        "Kalos",
+        "Final Destination",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "poke_stadium2",
+        "yoshi_cartboard",
+        "battle_field",
+        "animal_village",
+        "battle_field_s",
+        "animal_city",
+        "poke_kalos",
+        "end",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/charizard.html"
+    },
+    {
+      "fighter": "diddy_kong",
+      "source_label": "DIDDY KONG",
+      "source_stages": [
+        "Town and City",
+        "Final Destination",
+        "Pokemon Stadium 2",
+        "Kalos",
+        "Small Battlefield",
+        "Smashville",
+        "Battlefield",
+        "Unova",
+        "Lylat Cruise",
+        "Yoshi's Story",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "animal_city",
+        "end",
+        "poke_stadium2",
+        "poke_kalos",
+        "battle_field_s",
+        "animal_village",
+        "battle_field",
+        "fox_lylatcruise",
+        "yoshi_cartboard"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/diddy%20kong.html"
+    },
+    {
+      "fighter": "lucas",
+      "source_label": "LUCAS",
+      "source_stages": [
+        "Town and City",
+        "Small Battlefield",
+        "Final Destination",
+        "Kalos",
+        "Smashville",
+        "Pokemon Stadium 2",
+        "Battlefield",
+        "Lylat Cruise",
+        "Unova",
+        "Yoshi's Story",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "animal_city",
+        "battle_field_s",
+        "end",
+        "poke_kalos",
+        "animal_village",
+        "poke_stadium2",
+        "battle_field",
+        "fox_lylatcruise",
+        "yoshi_cartboard"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/lucas.html"
+    },
+    {
+      "fighter": "sonic",
+      "source_label": "SONIC",
+      "source_stages": [
+        "Kalos",
+        "Town and City",
+        "Final Destination",
+        "Unova",
+        "Pokemon Stadium 2",
+        "Yoshi's Island",
+        "Yoshi's Story",
+        "Battlefield",
+        "Smashville",
+        "Small Battlefield",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "poke_kalos",
+        "animal_city",
+        "end",
+        "poke_stadium2",
+        "yoshi_cartboard",
+        "battle_field",
+        "animal_village",
+        "battle_field_s",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/sonic.html"
+    },
+    {
+      "fighter": "king_dedede",
+      "source_label": "KING DEDEDE",
+      "source_stages": [
+        "Smashville",
+        "Final Destination",
+        "Town and City",
+        "Pokemon Stadium 2",
+        "Unova",
+        "Small Battlefield",
+        "Kalos",
+        "Battlefield",
+        "Lylat Cruise",
+        "Yoshi's Island",
+        "Yoshi's Story"
+      ],
+      "ranking": [
+        "animal_village",
+        "end",
+        "animal_city",
+        "poke_stadium2",
+        "battle_field_s",
+        "poke_kalos",
+        "battle_field",
+        "fox_lylatcruise",
+        "yoshi_cartboard"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/king%20dedede.html"
+    },
+    {
+      "fighter": "olimar",
+      "source_label": "OLIMAR",
+      "source_stages": [
+        "Final Destination",
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Battlefield",
+        "Unova",
+        "Smashville",
+        "Yoshi's Story",
+        "Yoshi's Island",
+        "Kalos",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "end",
+        "battle_field_s",
+        "poke_stadium2",
+        "animal_city",
+        "battle_field",
+        "animal_village",
+        "yoshi_cartboard",
+        "poke_kalos",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/olimar.html"
+    },
+    {
+      "fighter": "lucario",
+      "source_label": "LUCARIO",
+      "source_stages": [
+        "Kalos",
+        "Final Destination",
+        "Pokemon Stadium 2",
+        "Battlefield",
+        "Small Battlefield",
+        "Smashville",
+        "Unova",
+        "Town and City",
+        "Yoshi's Story",
+        "Lylat Cruise",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "poke_kalos",
+        "end",
+        "poke_stadium2",
+        "battle_field",
+        "battle_field_s",
+        "animal_village",
+        "animal_city",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/lucario.html"
+    },
+    {
+      "fighter": "rob",
+      "source_label": "ROB/R.O.B.",
+      "source_stages": [
+        "Pokemon Stadium 2",
+        "Final Destination",
+        "Small Battlefield",
+        "Kalos",
+        "Town and City",
+        "Battlefield",
+        "Smashville",
+        "Unova",
+        "Lylat Cruise",
+        "Yoshi's Story",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "poke_stadium2",
+        "end",
+        "battle_field_s",
+        "poke_kalos",
+        "animal_city",
+        "battle_field",
+        "animal_village",
+        "fox_lylatcruise",
+        "yoshi_cartboard"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/rob.html"
+    },
+    {
+      "fighter": "toon_link",
+      "source_label": "TOON LINK",
+      "source_stages": [
+        "Town and City",
+        "Kalos",
+        "Final Destination",
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Smashville",
+        "Battlefield",
+        "Yoshi's Story",
+        "Yoshi's Island",
+        "Lylat Cruise",
+        "Unova"
+      ],
+      "ranking": [
+        "animal_city",
+        "poke_kalos",
+        "end",
+        "battle_field_s",
+        "poke_stadium2",
+        "animal_village",
+        "battle_field",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Yoshi's Island",
+        "Unova"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/toon%20link.html"
+    },
+    {
+      "fighter": "wolf",
+      "source_label": "WOLF",
+      "source_stages": [
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Battlefield",
+        "Kalos",
+        "Town and City",
+        "Smashville",
+        "Final Destination",
+        "Yoshi's Story",
+        "Unova",
+        "Lylat Cruise",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "battle_field_s",
+        "poke_stadium2",
+        "battle_field",
+        "poke_kalos",
+        "animal_city",
+        "animal_village",
+        "end",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/wolf.html"
+    },
+    {
+      "fighter": "villager",
+      "source_label": "VILLAGER",
+      "source_stages": [
+        "Yoshi's Story",
+        "Battlefield",
+        "Small Battlefield",
+        "Kalos",
+        "Pokemon Stadium 2",
+        "Smashville",
+        "Town and City",
+        "Yoshi's Island",
+        "Final Destination",
+        "Lylat Cruise",
+        "Unova"
+      ],
+      "ranking": [
+        "yoshi_cartboard",
+        "battle_field",
+        "battle_field_s",
+        "poke_kalos",
+        "poke_stadium2",
+        "animal_village",
+        "animal_city",
+        "end",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Yoshi's Island",
+        "Unova"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/villager.html"
+    },
+    {
+      "fighter": "mega_man",
+      "source_label": "MEGA MAN",
+      "source_stages": [
+        "Pokemon Stadium 2",
+        "Final Destination",
+        "Kalos",
+        "Town and City",
+        "Battlefield",
+        "Smashville",
+        "Yoshi's Story",
+        "Small Battlefield",
+        "Yoshi's Island",
+        "Lylat Cruise",
+        "Unova"
+      ],
+      "ranking": [
+        "poke_stadium2",
+        "end",
+        "poke_kalos",
+        "animal_city",
+        "battle_field",
+        "animal_village",
+        "yoshi_cartboard",
+        "battle_field_s",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Yoshi's Island",
+        "Unova"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/mega%20man.html"
+    },
+    {
+      "fighter": "wii_fit_trainer",
+      "source_label": "Wii Fit TRAINER",
+      "source_stages": [
+        "Unova",
+        "Kalos",
+        "Pokemon Stadium 2",
+        "Small Battlefield",
+        "Battlefield",
+        "Final Destination",
+        "Smashville",
+        "Yoshi's Story",
+        "Lylat Cruise",
+        "Town and City",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "poke_kalos",
+        "poke_stadium2",
+        "battle_field_s",
+        "battle_field",
+        "end",
+        "animal_village",
+        "yoshi_cartboard",
+        "fox_lylatcruise",
+        "animal_city"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/wii%20fit%20trainer.html"
+    },
+    {
+      "fighter": "rosalina_and_luma",
+      "source_label": "ROSALINA AND LUMA",
+      "source_stages": [
+        "Battlefield",
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Kalos",
+        "Small Battlefield",
+        "Unova",
+        "Yoshi's Story",
+        "Smashville",
+        "Final Destination",
+        "Yoshi's Island",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "battle_field",
+        "poke_stadium2",
+        "animal_city",
+        "poke_kalos",
+        "battle_field_s",
+        "yoshi_cartboard",
+        "animal_village",
+        "end",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/rosalina%20and%20luma.html"
+    },
+    {
+      "fighter": "little_mac",
+      "source_label": "LITTLE MAC",
+      "source_stages": [
+        "Small Battlefield",
+        "Final Destination",
+        "Pokemon Stadium 2",
+        "Smashville",
+        "Yoshi's Island",
+        "Battlefield",
+        "Town and City",
+        "Unova",
+        "Yoshi's Story",
+        "Lylat Cruise",
+        "Kalos"
+      ],
+      "ranking": [
+        "battle_field_s",
+        "end",
+        "poke_stadium2",
+        "animal_village",
+        "battle_field",
+        "animal_city",
+        "yoshi_cartboard",
+        "fox_lylatcruise",
+        "poke_kalos"
+      ],
+      "excluded_stages": [
+        "Yoshi's Island",
+        "Unova"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/little%20mac.html"
+    },
+    {
+      "fighter": "greninja",
+      "source_label": "GRENINJA",
+      "source_stages": [
+        "Kalos",
+        "Final Destination",
+        "Town and City",
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Battlefield",
+        "Unova",
+        "Smashville",
+        "Yoshi's Story",
+        "Lylat Cruise",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "poke_kalos",
+        "end",
+        "animal_city",
+        "battle_field_s",
+        "poke_stadium2",
+        "battle_field",
+        "animal_village",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/greninja.html"
+    },
+    {
+      "fighter": "mii_brawler",
+      "source_label": "Mii Brawler/mii_fighter",
+      "source_stages": [
+        "Yoshi's Story",
+        "Battlefield",
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Smashville",
+        "Town and City",
+        "Yoshi's Island",
+        "Unova",
+        "Lylat Cruise",
+        "Final Destination",
+        "Kalos"
+      ],
+      "ranking": [
+        "yoshi_cartboard",
+        "battle_field",
+        "battle_field_s",
+        "poke_stadium2",
+        "animal_village",
+        "animal_city",
+        "fox_lylatcruise",
+        "end",
+        "poke_kalos"
+      ],
+      "excluded_stages": [
+        "Yoshi's Island",
+        "Unova"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/mii%20brawler.html"
+    },
+    {
+      "fighter": "mii_swordfighter",
+      "source_label": "Mii Swordfighter/mii_fighter",
+      "source_stages": [
+        "Pokemon Stadium 2",
+        "Small Battlefield",
+        "Unova",
+        "Final Destination",
+        "Yoshi's Story",
+        "Lylat Cruise",
+        "Kalos",
+        "Smashville",
+        "Battlefield",
+        "Town and City",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "poke_stadium2",
+        "battle_field_s",
+        "end",
+        "yoshi_cartboard",
+        "fox_lylatcruise",
+        "poke_kalos",
+        "animal_village",
+        "battle_field",
+        "animal_city"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/mii%20swordfighter.html"
+    },
+    {
+      "fighter": "mii_gunner",
+      "source_label": "Mii Gunner/mii_fighter",
+      "source_stages": [
+        "Pokemon Stadium 2",
+        "Final Destination",
+        "Town and City",
+        "Kalos",
+        "Unova",
+        "Battlefield",
+        "Smashville",
+        "Small Battlefield",
+        "Lylat Cruise",
+        "Yoshi's Story",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "poke_stadium2",
+        "end",
+        "animal_city",
+        "poke_kalos",
+        "battle_field",
+        "animal_village",
+        "battle_field_s",
+        "fox_lylatcruise",
+        "yoshi_cartboard"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/mii%20gunner.html"
+    },
+    {
+      "fighter": "palutena",
+      "source_label": "PALUTENA",
+      "source_stages": [
+        "Battlefield",
+        "Small Battlefield",
+        "Yoshi's Story",
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Smashville",
+        "Kalos",
+        "Lylat Cruise",
+        "Final Destination",
+        "Yoshi's Island",
+        "Unova"
+      ],
+      "ranking": [
+        "battle_field",
+        "battle_field_s",
+        "yoshi_cartboard",
+        "poke_stadium2",
+        "animal_city",
+        "animal_village",
+        "poke_kalos",
+        "fox_lylatcruise",
+        "end"
+      ],
+      "excluded_stages": [
+        "Yoshi's Island",
+        "Unova"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/palutena.html"
+    },
+    {
+      "fighter": "pac_man",
+      "source_label": "PAC-MAN",
+      "source_stages": [
+        "Final Destination",
+        "Kalos",
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Smashville",
+        "Unova",
+        "Small Battlefield",
+        "Battlefield",
+        "Yoshi's Story",
+        "Yoshi's Island",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "end",
+        "poke_kalos",
+        "poke_stadium2",
+        "animal_city",
+        "animal_village",
+        "battle_field_s",
+        "battle_field",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/pac-man.html"
+    },
+    {
+      "fighter": "robin",
+      "source_label": "ROBIN",
+      "source_stages": [
+        "Battlefield",
+        "Small Battlefield",
+        "Unova",
+        "Pokemon Stadium 2",
+        "Yoshi's Story",
+        "Smashville",
+        "Kalos",
+        "Final Destination",
+        "Town and City",
+        "Lylat Cruise",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "battle_field",
+        "battle_field_s",
+        "poke_stadium2",
+        "yoshi_cartboard",
+        "animal_village",
+        "poke_kalos",
+        "end",
+        "animal_city",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/robin.html"
+    },
+    {
+      "fighter": "shulk",
+      "source_label": "SHULK",
+      "source_stages": [
+        "Final Destination",
+        "Unova",
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Kalos",
+        "Smashville",
+        "Battlefield",
+        "Yoshi's Island",
+        "Yoshi's Story",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "end",
+        "battle_field_s",
+        "poke_stadium2",
+        "animal_city",
+        "poke_kalos",
+        "animal_village",
+        "battle_field",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/shulk.html"
+    },
+    {
+      "fighter": "bowser_jr",
+      "source_label": "BOWSER JR.",
+      "source_stages": [
+        "Town and City",
+        "Kalos",
+        "Pokemon Stadium 2",
+        "Final Destination",
+        "Small Battlefield",
+        "Battlefield",
+        "Smashville",
+        "Unova",
+        "Yoshi's Story",
+        "Yoshi's Island",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "animal_city",
+        "poke_kalos",
+        "poke_stadium2",
+        "end",
+        "battle_field_s",
+        "battle_field",
+        "animal_village",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/bowser%20jr..html"
+    },
+    {
+      "fighter": "duck_hunt",
+      "source_label": "DUCK HUNT",
+      "source_stages": [
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Unova",
+        "Battlefield",
+        "Final Destination",
+        "Town and City",
+        "Yoshi's Story",
+        "Kalos",
+        "Smashville",
+        "Yoshi's Island",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "battle_field_s",
+        "poke_stadium2",
+        "battle_field",
+        "end",
+        "animal_city",
+        "yoshi_cartboard",
+        "poke_kalos",
+        "animal_village",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/duck%20hunt.html"
+    },
+    {
+      "fighter": "ryu",
+      "source_label": "RYU",
+      "source_stages": [
+        "Final Destination",
+        "Smashville",
+        "Kalos",
+        "Small Battlefield",
+        "Unova",
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Battlefield",
+        "Yoshi's Story",
+        "Yoshi's Island",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "end",
+        "animal_village",
+        "poke_kalos",
+        "battle_field_s",
+        "poke_stadium2",
+        "animal_city",
+        "battle_field",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/ryu.html"
+    },
+    {
+      "fighter": "ken",
+      "source_label": "KEN",
+      "source_stages": [
+        "Smashville",
+        "Final Destination",
+        "Small Battlefield",
+        "Unova",
+        "Pokemon Stadium 2",
+        "Battlefield",
+        "Yoshi's Story",
+        "Lylat Cruise",
+        "Yoshi's Island",
+        "Kalos",
+        "Town and City"
+      ],
+      "ranking": [
+        "animal_village",
+        "end",
+        "battle_field_s",
+        "poke_stadium2",
+        "battle_field",
+        "yoshi_cartboard",
+        "fox_lylatcruise",
+        "poke_kalos",
+        "animal_city"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/ken.html"
+    },
+    {
+      "fighter": "cloud",
+      "source_label": "CLOUD",
+      "source_stages": [
+        "Battlefield",
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Kalos",
+        "Yoshi's Story",
+        "Small Battlefield",
+        "Smashville",
+        "Lylat Cruise",
+        "Final Destination",
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "battle_field",
+        "poke_stadium2",
+        "animal_city",
+        "poke_kalos",
+        "yoshi_cartboard",
+        "battle_field_s",
+        "animal_village",
+        "fox_lylatcruise",
+        "end"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/cloud.html"
+    },
+    {
+      "fighter": "corrin",
+      "source_label": "CORRIN",
+      "source_stages": [
+        "Yoshi's Story",
+        "Battlefield",
+        "Small Battlefield",
+        "Smashville",
+        "Unova",
+        "Pokemon Stadium 2",
+        "Kalos",
+        "Lylat Cruise",
+        "Yoshi's Island",
+        "Final Destination",
+        "Town and City"
+      ],
+      "ranking": [
+        "yoshi_cartboard",
+        "battle_field",
+        "battle_field_s",
+        "animal_village",
+        "poke_stadium2",
+        "poke_kalos",
+        "fox_lylatcruise",
+        "end",
+        "animal_city"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/corrin.html"
+    },
+    {
+      "fighter": "bayonetta",
+      "source_label": "BAYONETTA",
+      "source_stages": [
+        "Yoshi's Story",
+        "Battlefield",
+        "Town and City",
+        "Kalos",
+        "Pokemon Stadium 2",
+        "Small Battlefield",
+        "Lylat Cruise",
+        "Unova",
+        "Final Destination",
+        "Smashville",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "yoshi_cartboard",
+        "battle_field",
+        "animal_city",
+        "poke_kalos",
+        "poke_stadium2",
+        "battle_field_s",
+        "fox_lylatcruise",
+        "end",
+        "animal_village"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/bayonetta.html"
+    },
+    {
+      "fighter": "inkling",
+      "source_label": "INKLING",
+      "source_stages": [
+        "Smashville",
+        "Pokemon Stadium 2",
+        "Small Battlefield",
+        "Lylat Cruise",
+        "Yoshi's Island",
+        "Yoshi's Story",
+        "Final Destination",
+        "Town and City",
+        "Battlefield",
+        "Unova",
+        "Kalos"
+      ],
+      "ranking": [
+        "animal_village",
+        "poke_stadium2",
+        "battle_field_s",
+        "fox_lylatcruise",
+        "yoshi_cartboard",
+        "end",
+        "animal_city",
+        "battle_field",
+        "poke_kalos"
+      ],
+      "excluded_stages": [
+        "Yoshi's Island",
+        "Unova"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/inkling.html"
+    },
+    {
+      "fighter": "ridley",
+      "source_label": "RIDLEY",
+      "source_stages": [
+        "Small Battlefield",
+        "Lylat Cruise",
+        "Battlefield",
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Smashville",
+        "Unova",
+        "Final Destination",
+        "Kalos",
+        "Yoshi's Story",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "battle_field_s",
+        "fox_lylatcruise",
+        "battle_field",
+        "poke_stadium2",
+        "animal_city",
+        "animal_village",
+        "end",
+        "poke_kalos",
+        "yoshi_cartboard"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/ridley.html"
+    },
+    {
+      "fighter": "simon",
+      "source_label": "SIMON",
+      "source_stages": [
+        "Small Battlefield",
+        "Lylat Cruise",
+        "Town and City",
+        "Battlefield",
+        "Pokemon Stadium 2",
+        "Smashville",
+        "Final Destination",
+        "Kalos",
+        "Unova",
+        "Yoshi's Story",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "battle_field_s",
+        "fox_lylatcruise",
+        "animal_city",
+        "battle_field",
+        "poke_stadium2",
+        "animal_village",
+        "end",
+        "poke_kalos",
+        "yoshi_cartboard"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/simon.html"
+    },
+    {
+      "fighter": "king_k_rool",
+      "source_label": "KING K. ROOL",
+      "source_stages": [
+        "Battlefield",
+        "Pokemon Stadium 2",
+        "Small Battlefield",
+        "Smashville",
+        "Town and City",
+        "Lylat Cruise",
+        "Unova",
+        "Final Destination",
+        "Kalos",
+        "Yoshi's Story",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "battle_field",
+        "poke_stadium2",
+        "battle_field_s",
+        "animal_village",
+        "animal_city",
+        "fox_lylatcruise",
+        "end",
+        "poke_kalos",
+        "yoshi_cartboard"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/king%20k.%20rool.html"
+    },
+    {
+      "fighter": "isabelle",
+      "source_label": "ISABELLE/shizue",
+      "source_stages": [
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Battlefield",
+        "Town and City",
+        "Unova",
+        "Final Destination",
+        "Yoshi's Story",
+        "Smashville",
+        "Kalos",
+        "Lylat Cruise",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "battle_field_s",
+        "poke_stadium2",
+        "battle_field",
+        "animal_city",
+        "end",
+        "yoshi_cartboard",
+        "animal_village",
+        "poke_kalos",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/isabelle.html"
+    },
+    {
+      "fighter": "incineroar",
+      "source_label": "INCINEROAR",
+      "source_stages": [
+        "Smashville",
+        "Yoshi's Story",
+        "Lylat Cruise",
+        "Battlefield",
+        "Yoshi's Island",
+        "Town and City",
+        "Small Battlefield",
+        "Unova",
+        "Final Destination",
+        "Pokemon Stadium 2",
+        "Kalos"
+      ],
+      "ranking": [
+        "animal_village",
+        "yoshi_cartboard",
+        "fox_lylatcruise",
+        "battle_field",
+        "animal_city",
+        "battle_field_s",
+        "end",
+        "poke_stadium2",
+        "poke_kalos"
+      ],
+      "excluded_stages": [
+        "Yoshi's Island",
+        "Unova"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/incineroar.html"
+    },
+    {
+      "fighter": "piranha_plant",
+      "source_label": "PIRANHA PLANT",
+      "source_stages": [
+        "Pokemon Stadium 2",
+        "Final Destination",
+        "Unova",
+        "Smashville",
+        "Small Battlefield",
+        "Town and City",
+        "Battlefield",
+        "Kalos",
+        "Lylat Cruise",
+        "Yoshi's Story",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "poke_stadium2",
+        "end",
+        "animal_village",
+        "battle_field_s",
+        "animal_city",
+        "battle_field",
+        "poke_kalos",
+        "fox_lylatcruise",
+        "yoshi_cartboard"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/piranha%20plant.html"
+    },
+    {
+      "fighter": "joker",
+      "source_label": "JOKER",
+      "source_stages": [
+        "Pokemon Stadium 2",
+        "Smashville",
+        "Town and City",
+        "Small Battlefield",
+        "Final Destination",
+        "Kalos",
+        "Unova",
+        "Yoshi's Story",
+        "Battlefield",
+        "Yoshi's Island",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "poke_stadium2",
+        "animal_village",
+        "animal_city",
+        "battle_field_s",
+        "end",
+        "poke_kalos",
+        "yoshi_cartboard",
+        "battle_field",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/joker.html"
+    },
+    {
+      "fighter": "hero",
+      "source_label": "HERO/dq_hero",
+      "source_stages": [
+        "Town and City",
+        "Pokemon Stadium 2",
+        "Kalos",
+        "Small Battlefield",
+        "Battlefield",
+        "Unova",
+        "Smashville",
+        "Yoshi's Story",
+        "Lylat Cruise",
+        "Final Destination",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "animal_city",
+        "poke_stadium2",
+        "poke_kalos",
+        "battle_field_s",
+        "battle_field",
+        "animal_village",
+        "yoshi_cartboard",
+        "fox_lylatcruise",
+        "end"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/hero.html"
+    },
+    {
+      "fighter": "banjo",
+      "source_label": "BANJO/BANJO AND KAZOOIE",
+      "source_stages": [
+        "Final Destination",
+        "Town and City",
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Kalos",
+        "Smashville",
+        "Battlefield",
+        "Yoshi's Island",
+        "Unova",
+        "Yoshi's Story",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "end",
+        "animal_city",
+        "battle_field_s",
+        "poke_stadium2",
+        "poke_kalos",
+        "animal_village",
+        "battle_field",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Yoshi's Island",
+        "Unova"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/banjo.html"
+    },
+    {
+      "fighter": "terry",
+      "source_label": "TERRY",
+      "source_stages": [
+        "Small Battlefield",
+        "Final Destination",
+        "Smashville",
+        "Town and City",
+        "Pokemon Stadium 2",
+        "Battlefield",
+        "Kalos",
+        "Unova",
+        "Yoshi's Story",
+        "Yoshi's Island",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "battle_field_s",
+        "end",
+        "animal_village",
+        "animal_city",
+        "poke_stadium2",
+        "battle_field",
+        "poke_kalos",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/terry.html"
+    },
+    {
+      "fighter": "byleth",
+      "source_label": "BYLETH",
+      "source_stages": [
+        "Yoshi's Story",
+        "Battlefield",
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Smashville",
+        "Yoshi's Island",
+        "Kalos",
+        "Unova",
+        "Lylat Cruise",
+        "Town and City",
+        "Final Destination"
+      ],
+      "ranking": [
+        "yoshi_cartboard",
+        "battle_field",
+        "battle_field_s",
+        "poke_stadium2",
+        "animal_village",
+        "poke_kalos",
+        "fox_lylatcruise",
+        "animal_city",
+        "end"
+      ],
+      "excluded_stages": [
+        "Yoshi's Island",
+        "Unova"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/byleth.html"
+    },
+    {
+      "fighter": "min_min",
+      "source_label": "MIN MIN/minmin",
+      "source_stages": [
+        "Final Destination",
+        "Pokemon Stadium 2",
+        "Kalos",
+        "Town and City",
+        "Small Battlefield",
+        "Unova",
+        "Smashville",
+        "Battlefield",
+        "Yoshi's Island",
+        "Yoshi's Story",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "end",
+        "poke_stadium2",
+        "poke_kalos",
+        "animal_city",
+        "battle_field_s",
+        "animal_village",
+        "battle_field",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/min%20min.html"
+    },
+    {
+      "fighter": "steve",
+      "source_label": "STEVE",
+      "source_stages": [
+        "Final Destination",
+        "Small Battlefield",
+        "Pokemon Stadium 2",
+        "Kalos",
+        "Battlefield",
+        "Town and City",
+        "Smashville",
+        "Yoshi's Story",
+        "Yoshi's Island",
+        "Unova",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "end",
+        "battle_field_s",
+        "poke_stadium2",
+        "poke_kalos",
+        "battle_field",
+        "animal_city",
+        "animal_village",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Yoshi's Island",
+        "Unova"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/steve.html"
+    },
+    {
+      "fighter": "sephiroth",
+      "source_label": "SEPHIROTH",
+      "source_stages": [
+        "Kalos",
+        "Town and City",
+        "Battlefield",
+        "Pokemon Stadium 2",
+        "Small Battlefield",
+        "Smashville",
+        "Unova",
+        "Final Destination",
+        "Yoshi's Story",
+        "Yoshi's Island",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "poke_kalos",
+        "animal_city",
+        "battle_field",
+        "poke_stadium2",
+        "battle_field_s",
+        "animal_village",
+        "end",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/sephiroth.html"
+    },
+    {
+      "fighter": "pyra",
+      "source_label": "PYRA/homura",
+      "source_stages": [
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Small Battlefield",
+        "Battlefield",
+        "Final Destination",
+        "Smashville",
+        "Yoshi's Story",
+        "Yoshi's Island",
+        "Unova",
+        "Kalos",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "poke_stadium2",
+        "animal_city",
+        "battle_field_s",
+        "battle_field",
+        "end",
+        "animal_village",
+        "yoshi_cartboard",
+        "poke_kalos",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Yoshi's Island",
+        "Unova"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/pyra.html"
+    },
+    {
+      "fighter": "mythra",
+      "source_label": "MYTHRA/homura",
+      "source_stages": [
+        "Pokemon Stadium 2",
+        "Town and City",
+        "Small Battlefield",
+        "Battlefield",
+        "Final Destination",
+        "Smashville",
+        "Yoshi's Story",
+        "Yoshi's Island",
+        "Unova",
+        "Kalos",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "poke_stadium2",
+        "animal_city",
+        "battle_field_s",
+        "battle_field",
+        "end",
+        "animal_village",
+        "yoshi_cartboard",
+        "poke_kalos",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Yoshi's Island",
+        "Unova"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/mythra.html"
+    },
+    {
+      "fighter": "kazuya",
+      "source_label": "KAZUYA",
+      "source_stages": [
+        "Final Destination",
+        "Town and City",
+        "Kalos",
+        "Unova",
+        "Pokemon Stadium 2",
+        "Battlefield",
+        "Yoshi's Island",
+        "Small Battlefield",
+        "Smashville",
+        "Yoshi's Story",
+        "Lylat Cruise"
+      ],
+      "ranking": [
+        "end",
+        "animal_city",
+        "poke_kalos",
+        "poke_stadium2",
+        "battle_field",
+        "battle_field_s",
+        "animal_village",
+        "yoshi_cartboard",
+        "fox_lylatcruise"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/kazuya.html"
+    },
+    {
+      "fighter": "sora",
+      "source_label": "SORA",
+      "source_stages": [
+        "Battlefield",
+        "Yoshi's Story",
+        "Small Battlefield",
+        "Smashville",
+        "Town and City",
+        "Lylat Cruise",
+        "Pokemon Stadium 2",
+        "Kalos",
+        "Final Destination",
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "ranking": [
+        "battle_field",
+        "yoshi_cartboard",
+        "battle_field_s",
+        "animal_village",
+        "animal_city",
+        "fox_lylatcruise",
+        "poke_stadium2",
+        "poke_kalos",
+        "end"
+      ],
+      "excluded_stages": [
+        "Unova",
+        "Yoshi's Island"
+      ],
+      "coverage": "ordered publisher data array, intersected with audited pool",
+      "source_page": "https://smash-ultimate.github.io/info/sora.html"
+    },
+    {
+      "fighter": "richter",
+      "source_label": "richter",
+      "source_stages": [
+        "Small Battlefield",
+        "Lylat Cruise",
+        "Town and City"
+      ],
+      "ranking": [
+        "battle_field_s",
+        "fox_lylatcruise",
+        "animal_city"
+      ],
+      "excluded_stages": [],
+      "coverage": "only three preferred stages published on the retained fighter page; display order used as provisional tie order",
+      "source_page": "https://github.com/smash-ultimate/smash-ultimate.github.io/blob/c1d97515015b674e0b846cf53b5bb276bf6e108c/info/richter.html"
+    }
+  ]
+}
