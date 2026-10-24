@@ -11,6 +11,38 @@
 
 use crate::{select_eligible, Config, Fighter, PopRoute, SelectQuery, Selection};
 
+/// The native winner increment precedes creation of the results UI singleton.
+/// Its qualified exit callback, rather than a borrowed UI pointer, ends this
+/// epoch. The pending stage construction can outlive that exit.
+#[derive(Debug, Default)]
+pub struct ResultSession {
+    ticket: u64,
+    open: bool,
+}
+
+impl ResultSession {
+    pub const fn new() -> Self {
+        Self {
+            ticket: 0,
+            open: false,
+        }
+    }
+
+    /// Ignore duplicate winner callbacks until the native results exit.
+    pub fn begin(&mut self) -> Option<u64> {
+        if self.open {
+            return None;
+        }
+        self.ticket = self.ticket.checked_add(1)?;
+        self.open = true;
+        Some(self.ticket)
+    }
+
+    pub fn close(&mut self) -> bool {
+        core::mem::replace(&mut self.open, false)
+    }
+}
+
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub struct NativeParticipant {
     /// Native E+14 player number, never a HUD P1/P2 label.

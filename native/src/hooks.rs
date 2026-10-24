@@ -10,7 +10,8 @@ use std::sync::Mutex;
 
 use crate::{filter, pool, settings};
 use elite_stages_counterpick_core::construction::{
-    CounterObservation, LocalConstruction, MatchStart, NativeParticipant, ParticipantRow, Route,
+    CounterObservation, LocalConstruction, MatchStart, NativeParticipant, ParticipantRow,
+    ResultSession, Route,
 };
 use elite_stages_counterpick_core::{mode_vector_offset, Fighter, PopRoute, Selection};
 use skyline::hooks::{getRegionAddress, InlineCtx, Region};
@@ -27,7 +28,6 @@ const WIN_OFF: usize = 0x256;
 const LIST_COUNT: usize = 0x52cc5f6;
 const LIST_WORDS: usize = 0x52cc5fc;
 const ROW_INDEX_BASE: usize = 0x52c5180;
-const SEQ_HOLDER: usize = 0x52c35d0;
 
 const POP_RETURN: usize = 0x17923a0;
 const PREFERRED_ON: usize = 0x1791ea8;
@@ -38,33 +38,28 @@ static MAIN: AtomicUsize = AtomicUsize::new(0);
 static CONFIG_EPOCH: AtomicU64 = AtomicU64::new(1);
 
 struct Visit {
-    seq: u64,
     ticket: u64,
     winner: u8,
     /// Construction is waiting for the post-result pop.
     open: bool,
-    /// Results session is live. `0x150e9d0` clears this without retiring `open`.
-    session_open: bool,
     config_epoch: u64,
 }
 
 struct Slot {
     bridge: LocalConstruction,
     visit: Visit,
-    next: u64,
+    session: ResultSession,
 }
 
 static SLOT: Mutex<Slot> = Mutex::new(Slot {
     bridge: LocalConstruction::new(),
     visit: Visit {
-        seq: 0,
         ticket: 0,
         winner: 0,
         open: false,
-        session_open: false,
         config_epoch: 0,
     },
-    next: 0,
+    session: ResultSession::new(),
 });
 
 pub fn start() {
@@ -142,9 +137,10 @@ unsafe fn fingerprints(main: usize) -> bool {
         )
         && words(
             main,
-            0x14fac10,
+            0x14fac08,
             &[
-                0xb9800131, 0x9b0c2e32, 0x39601a51, 0x11000620, 0x13001c11, 0x6b0a023f, 0x39201a40,
+                0xd001ee90, 0x91176210, 0xb9800131, 0x9b0c2e32, 0x39601a51, 0x11000620,
+                0x13001c11, 0x6b0a023f, 0x39201a40,
             ],
         )
         // Exact results-exit function qualified by the replay helper. The
@@ -181,17 +177,6 @@ fn online(main: usize) -> bool {
         rd::<u8>(main + 0x53144d8).is_some_and(|b| b & 1 != 0)
             && rd::<u8>(main + 0x52c51b0) == Some(0x0e)
             && rd::<u32>(main + 0x53050f0) == Some(0x0701_0101)
-    }
-}
-
-fn results_seq(main: usize) -> Option<u64> {
-    unsafe {
-        let holder = rd::<u64>(main + SEQ_HOLDER)?;
-        if holder == 0 || !holder.is_multiple_of(8) {
-            return None;
-        }
-        let inner = rd::<u64>(holder as usize + 8)?;
-        (inner != 0 && inner.is_multiple_of(8)).then_some(inner)
     }
 }
 
@@ -243,30 +228,25 @@ fn pair(main: usize) -> Option<[ParticipantRow; 2]> {
     (count == 2).then_some(found)
 }
 
-/// The inner pointer dedupes only while its results session is open, or while
-/// this visit is still waiting for the pop. `elite_cp_result_exit` closes the session.
-/// The same pointer after that close, with no open visit, is the next match.
-fn begin_visit(slot: &mut Slot, seq: u64) -> bool {
-    let same = slot.visit.ticket != 0 && slot.visit.seq == seq;
-    if same && (slot.visit.session_open || slot.visit.open) {
+/// The winner callback begins the results epoch before its UI exists. A new
+/// epoch replaces any abandoned intent; a duplicate keeps its original baseline.
+fn begin_visit(slot: &mut Slot) -> bool {
+    let Some(ticket) = slot.session.begin() else {
         return false;
-    }
-    slot.next = slot.next.wrapping_add(1);
-    if slot.next == 0 {
-        slot.next = 1;
-    }
+    };
     slot.visit = Visit {
-        seq,
-        ticket: slot.next,
+        ticket,
         winner: 0,
         open: false,
-        session_open: true,
         config_epoch: CONFIG_EPOCH.load(Ordering::Acquire),
     };
     true
 }
 
-#[skyline::hook(offset = 0x14fac14, inline)]
+// Skyline's inline dispatcher consumes x16/x17 before saving InlineCtx. Hook
+// before the native ADRP/ADD and LDRSW define them, never at the later MADD
+// that needs their live values. The native CMP also defines NZCV before use.
+#[skyline::hook(offset = 0x14fac08, inline)]
 unsafe fn elite_cp_winner_increment(ctx: &mut InlineCtx) {
     if !ACTIVE.load(Ordering::Acquire)
         || !settings::enabled()
@@ -279,34 +259,34 @@ unsafe fn elite_cp_winner_increment(ctx: &mut InlineCtx) {
     let x9 = ctx.registers[9].x();
     let x11 = ctx.registers[11].x();
     let x12 = ctx.registers[12].x();
-    let x17 = ctx.registers[17].x();
-    // First and only list step: x8 is still the count, x9 still the first word.
+    // Before the list loop: x8 is still the count, x9 still the first word.
     // The following ldrb/add/strb is the native +1. This callback does not store it.
     if x12 != 0x260
         || x11 != (main + ROW_INDEX_BASE) as u64
         || x9 != (main + LIST_WORDS) as u64
         || x8 != 1
-        || x17 >= 8
     {
         return;
     }
-    let listed = rd::<u32>(main + LIST_WORDS);
+    // Read the same source as the upcoming native LDRSW. x17 in InlineCtx
+    // belongs to Skyline's handler, not the original winner register.
+    let Some(listed) = rd::<u32>(main + LIST_WORDS).filter(|p| *p < 8) else {
+        return;
+    };
     let count = rd::<u8>(main + LIST_COUNT);
-    if listed != u32::try_from(x17).ok() || count != Some(1) {
+    if count != Some(1) {
         return;
     }
-    let Some(seq) = results_seq(main) else { return };
     let Some(mut slot) = SLOT.try_lock().ok() else {
         return;
     };
     // One finish for this results session. A later hit keeps the first
     // pre-increment image and does not add another win.
-    let fresh = begin_visit(&mut slot, seq);
+    let fresh = begin_visit(&mut slot);
     skyline::println!(
-        "[CounterpickAdapter] finish ticket={} fresh={} session_open={} pending={}",
+        "[CounterpickAdapter] finish ticket={} fresh={} pending={}",
         slot.visit.ticket,
         fresh,
-        slot.visit.session_open,
         slot.visit.open
     );
     if !fresh {
@@ -317,7 +297,7 @@ unsafe fn elite_cp_winner_increment(ctx: &mut InlineCtx) {
         slot.bridge.invalidate();
         return;
     };
-    let winner = u8::try_from(x17).unwrap_or(u8::MAX);
+    let winner = listed as u8;
     if !rows.iter().any(|row| row.identity.number == winner) || !online(main) {
         skyline::println!("[CounterpickAdapter] finish refused winner/online scope");
         slot.bridge.invalidate();
@@ -396,15 +376,6 @@ unsafe fn elite_cp_eligible_pop(ctx: &mut InlineCtx) {
         drop_visit(&mut slot, "scope-or-settings");
         return;
     }
-    // A missing results object is allowed: 0x2316608 can still be running.
-    // A different live object belongs to another visit.
-    if let Some(seq) = results_seq(main) {
-        if seq != slot.visit.seq {
-            slot.bridge.invalidate();
-            drop_visit(&mut slot, "changed-results");
-            return;
-        }
-    }
     let Some(rows) = pair(main) else {
         slot.bridge.invalidate();
         drop_visit(&mut slot, "participant-rows");
@@ -465,12 +436,11 @@ unsafe fn elite_cp_result_exit(_ctx: &mut InlineCtx) {
     let Some(mut slot) = SLOT.try_lock().ok() else {
         return;
     };
-    // Same edge the results helper uses to end an epoch. The pointer may be
-    // reused afterward. An open construction stays open for the pop.
-    if !slot.visit.session_open {
+    // Same edge the results helper uses to end an epoch. An open construction
+    // stays open for the post-result pop and revalidates the native row delta.
+    if !slot.session.close() {
         return;
     }
-    slot.visit.session_open = false;
     skyline::println!(
         "[CounterpickAdapter] result exit ticket={} pending={}",
         slot.visit.ticket,
