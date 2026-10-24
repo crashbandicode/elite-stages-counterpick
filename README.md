@@ -23,10 +23,11 @@ build from [Forgejo Releases](https://git.syntaxbyexample.com/intpa/elite-stages
   hooks the same game function. If another plugin already owns that hook, this
   plugin refuses to install its own hook.
 - Online Deluxe, recent enough to export plugin API v1 and accept a version-4
-  descriptor (`ssbu_online_deluxe_plugin_api_v1`). Deluxe draws the menu with
-  the game's existing ImGui host. This plugin does not install a renderer or
-  link its own ImGui client. Without Deluxe, the menu is unavailable but the
-  files still work.
+  descriptor (`ssbu_online_deluxe_plugin_api_v1`). A build that also accepts the
+  version-5 status cells shows the status table; an older one shows plain lines.
+  Deluxe draws the menu with the game's existing ImGui host. This plugin does
+  not install a renderer or link its own ImGui client. Without Deluxe, the
+  menu is unavailable but the files still work.
 
 Build the release NRO (see [Building](#building)) and copy
 `libelite_stages_counterpick.nro` to
@@ -45,10 +46,23 @@ not write files. A refused or failed write leaves the previous file in place
 and puts the row back. Unchecking the last stage is refused.
 
 **Stages + Counterpick** has **Legal stages**, the eleven stages, and
-**Counterpick**. **Needs pool** reads Yes while counterpick is on and the pool
-is off. **Pool hook** and **Result hook** read Ready or Unavailable. **Save**
-reads Ready, Saving, Not saved, or No file.
+**Counterpick**. The rest of the page is passive status, not settings. The
+cursor skips it and Left/Right do nothing there:
 
+- **Needs pool** reads Yes while counterpick is on and the pool is off.
+- A small table, **Pool | Results | Save**, with a check mark under a column
+  that is ready and a cross under one that is not:
+  - **Pool**: the stage-list hook is installed.
+  - **Results**: the result and rematch hooks are installed.
+  - **Save**: a cross while a save is running (yellow), after a failed save or
+    when the file could not be read (red); a check only once a save succeeded
+    or nothing is pending.
+
+The table needs an Online Deluxe build that supports status cells (descriptor
+revision 5). With an older Deluxe the same information appears as four plain
+lines instead, **Needs pool**, **Stage filter**, **Rematch pick** and **Save**,
+which read Ready, Saving, Not saved or No file, Unavailable. Those older builds
+can still rest the cursor on those lines. Nothing is written either way.
 The page does not edit fighter orders. **Counterpick** only turns the feature
 on or off and writes the existing rankings back with that toggle. Edit orders
 in `counterpick.cfg`.
@@ -62,8 +76,11 @@ Settings live in `sd:/ultimate/elite-legal-stages-public/`:
 - `settings.toml`: the stage pool, in the original Elite format.
 - `counterpick.cfg`: the counterpick toggle and ordered fighter preferences.
 
-Full ordered rankings can be edited in `counterpick.cfg`; see
-[CONFIGURATION.md](CONFIGURATION.md).
+The legal stage list is an ordinary text file you can edit without the menu:
+`sd:/ultimate/elite-legal-stages-public/settings.toml`. It is the same file the
+original Elite plugin used, so an existing one keeps working. Edit it with the
+game closed; it is read once at boot. Full ordered rankings are edited in
+`counterpick.cfg`. Both formats are in [CONFIGURATION.md](CONFIGURATION.md).
 
 ## How the counterpick decides
 

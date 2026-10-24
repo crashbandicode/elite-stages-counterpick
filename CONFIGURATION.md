@@ -34,6 +34,33 @@ left untouched, the pool stays inactive and the menu does not overwrite it. A
 missing file means pool off with all eleven stages checked; nothing is written
 until you save.
 
+### Editing the legal list in a file
+
+The legal stage list is this one file, `sd:/ultimate/elite-legal-stages-public/settings.toml`.
+You do not need the menu to change it, and there is no second copy of the list.
+
+1. Close the game. The file is read once at boot, so a change made while the
+   game runs is not noticed. The next menu save of a pool row then rewrites
+   the file from the pool the game already holds, and your edit is lost.
+2. Edit `enabled` and the quoted keys in `stages` (key table below). An
+   existing file from the original Elite plugin needs no change.
+3. Start the game. A valid file is used as written.
+
+If the file does not exist, create it with the layout above; the file name is
+exactly `settings.toml`. A missing file means pool off with all eleven stages
+checked, and nothing is written until the first pool save.
+
+A pool row saved from the menu rewrites the whole file in canonical form: the
+three-line comment header, `enabled`, then the checked stages one per line in
+the table order below. Comments and spacing you added are not kept, and the
+stages are written in that fixed order whatever order you used. A pool change
+never edits `counterpick.cfg`.
+
+A file that is malformed, over 32 KiB, has an unknown or duplicate stage, or
+puts `stages` before `enabled` is refused whole. The pool then stays inactive,
+the stage rows read Unavailable, and the file is left exactly as it was so you
+can fix it.
+
 When enabled, the pool removes unchecked stages from the game's own legal list.
 It never adds a stage the game would not allow. An empty `stages` list has the
 same effect as a disabled pool and keeps the counterpick inactive. The menu

@@ -8,11 +8,17 @@ use elite_stages_counterpick_core::{Config, Stage};
 #[cfg(test)]
 use elite_stages_counterpick_core::Fighter;
 
+/// Flat layout: the plain version 4 rows every Deluxe 0.5.3 or later accepts.
 pub const ABI_VERSION: u32 = 4;
+/// Cell layout: the status table. Only a Deluxe that knows `FLAG_CELL` accepts
+/// revision 5; an older one answers `REGISTER_ERR_ABI` and the flat layout is
+/// registered instead.
+pub const CELL_ABI_VERSION: u32 = 5;
 pub const FLAG_OWN_PAGE: u32 = 1;
 pub const FLAG_NO_PERSIST: u32 = 1 << 0;
 pub const FLAG_READ_ONLY: u32 = 1 << 1;
 pub const FLAG_HEADER: u32 = 1 << 2;
+pub const FLAG_CELL: u32 = 1 << 4;
 pub const CHOICE_UNAVAILABLE: u32 = u32::MAX;
 pub const REQUEST_APPLIED: u32 = 0;
 pub const REQUEST_REJECTED: u32 = 2;
@@ -75,7 +81,11 @@ const NO_CHOICES: [&str; 0] = [];
 pub enum RowKind {
     Header,
     Value,
+    /// A passive line: `Label  value`.
     Status,
+    /// A passive table column: the label is the heading and the tone of the
+    /// reported choice draws a check (`TONE_OK`) or a cross beneath it.
+    Cell,
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -89,6 +99,8 @@ pub struct OptionMeta {
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub struct PluginMeta {
+    /// Descriptor revision this layout is registered with.
+    pub abi_version: u32,
     pub id: &'static str,
     pub label: &'static str,
     pub own_page: bool,
@@ -104,9 +116,19 @@ pub enum PageId {
 impl PageId {
     pub const ALL: [PageId; 1] = [PageId::Controls];
 
+    /// The preferred layout: status cells in a table (revision 5).
     pub const fn meta(self) -> &'static PluginMeta {
         match self {
             PageId::Controls => &CONTROLS,
+        }
+    }
+
+    /// The same rows as plain status lines (revision 4), for a Deluxe that
+    /// predates cells. The rows keep their indices, so one `current` serves
+    /// both layouts.
+    pub const fn flat_meta(self) -> &'static PluginMeta {
+        match self {
+            PageId::Controls => &CONTROLS_FLAT,
         }
     }
 }
@@ -127,7 +149,10 @@ const fn row(
     }
 }
 
-const fn control_rows() -> [OptionMeta; CONTROL_COUNT] {
+/// The 19 rows. `cells` selects the status table (three cell rows) or, for a
+/// Deluxe without cells, the same rows as plain status lines. Ids, choices,
+/// tones and indices are identical; only the kind and the labels differ.
+const fn control_rows(cells: bool) -> [OptionMeta; CONTROL_COUNT] {
     let mut rows = [row(
         "pool_header",
         "Stage pool",
@@ -174,38 +199,51 @@ const fn control_rows() -> [OptionMeta; CONTROL_COUNT] {
         Some(&NEED_TONES),
         RowKind::Status,
     );
+    // The table headings are the operator's words (Pool | Results | Save). The
+    // flat fallback keeps the plain wording of a status line. The ids and
+    // answers are the hook-installed flags either way.
+    let kind = if cells {
+        RowKind::Cell
+    } else {
+        RowKind::Status
+    };
     rows[POOL_HOOK_ROW] = row(
         "pool_hook",
-        "Pool hook",
+        if cells { "Pool" } else { "Stage filter" },
         &HOOK_CHOICES,
         Some(&HOOK_TONES),
-        RowKind::Status,
+        kind,
     );
     rows[RESULT_HOOK_ROW] = row(
         "result_hook",
-        "Result hook",
+        if cells { "Results" } else { "Rematch pick" },
         &HOOK_CHOICES,
         Some(&HOOK_TONES),
-        RowKind::Status,
+        kind,
     );
-    rows[SAVE_ROW] = row(
-        "save_state",
-        "Save",
-        &SAVE_CHOICES,
-        Some(&SAVE_TONES),
-        RowKind::Status,
-    );
+    rows[SAVE_ROW] = row("save_state", "Save", &SAVE_CHOICES, Some(&SAVE_TONES), kind);
     rows
 }
 
-static CONTROL_ROWS: [OptionMeta; CONTROL_COUNT] = control_rows();
+static CELL_ROWS: [OptionMeta; CONTROL_COUNT] = control_rows(true);
+static FLAT_ROWS: [OptionMeta; CONTROL_COUNT] = control_rows(false);
 
 pub static CONTROLS: PluginMeta = PluginMeta {
+    abi_version: CELL_ABI_VERSION,
     id: "stages_counterpick",
     label: "Stages + Counterpick",
     own_page: true,
     config_path: None,
-    options: &CONTROL_ROWS,
+    options: &CELL_ROWS,
+};
+
+pub static CONTROLS_FLAT: PluginMeta = PluginMeta {
+    abi_version: ABI_VERSION,
+    id: "stages_counterpick",
+    label: "Stages + Counterpick",
+    own_page: true,
+    config_path: None,
+    options: &FLAT_ROWS,
 };
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -248,11 +286,19 @@ pub enum Answer {
     Unavailable,
 }
 
+/// Descriptor flags per row kind.
+///
+/// A status row is `READ_ONLY`: the host never calls `request` for it and
+/// Left/Right do nothing. A Deluxe that knows `FLAG_CELL` (revision 5) also
+/// keeps the cursor off status and cell rows; an older one lets Up/Down rest
+/// on a status line of the flat layout, which this module cannot prevent. A
+/// cell is the same read-only row, flagged `CELL`.
 pub fn option_flags(kind: RowKind) -> u32 {
     match kind {
         RowKind::Header => FLAG_HEADER,
         RowKind::Value => FLAG_NO_PERSIST,
         RowKind::Status => FLAG_NO_PERSIST | FLAG_READ_ONLY,
+        RowKind::Cell => FLAG_NO_PERSIST | FLAG_READ_ONLY | FLAG_CELL,
     }
 }
 
@@ -459,14 +505,20 @@ mod tests {
     fn descriptors_fit_the_deluxe_own_page_registry() {
         assert_eq!(CHOICE_UNAVAILABLE, u32::MAX);
         let mut seen_plugins = Vec::new();
-        for page in PageId::ALL {
-            let meta = page.meta();
+        for (page, meta) in PageId::ALL
+            .iter()
+            .flat_map(|page| [(*page, page.meta()), (*page, page.flat_meta())])
+        {
             assert!(meta.own_page);
             assert_eq!(meta.config_path, None);
             assert!(id_ok(meta.id));
             assert!(label_ok(meta.label));
-            assert!(!seen_plugins.contains(&meta.id));
-            seen_plugins.push(meta.id);
+            // One plugin id with two layouts; only one is ever registered.
+            assert_eq!(meta.id, page.meta().id);
+            if meta.abi_version == CELL_ABI_VERSION {
+                assert!(!seen_plugins.contains(&meta.id));
+                seen_plugins.push(meta.id);
+            }
             assert!(!meta.options.is_empty() && meta.options.len() <= MAX_OPTIONS);
             let mut seen_ids = Vec::new();
             for option in meta.options {
@@ -495,6 +547,17 @@ mod tests {
                         assert!(option.choices.len() > 1);
                         assert_eq!(option_flags(option.kind), FLAG_NO_PERSIST | FLAG_READ_ONLY);
                     }
+                    RowKind::Cell => {
+                        // The tone is the ready/not-ready contract: required,
+                        // and only a revision 5 descriptor may carry the bit.
+                        assert!(option.choices.len() > 1);
+                        assert_eq!(meta.abi_version, CELL_ABI_VERSION);
+                        assert!(option.tones.is_some());
+                        assert_eq!(
+                            option_flags(option.kind),
+                            FLAG_NO_PERSIST | FLAG_READ_ONLY | FLAG_CELL
+                        );
+                    }
                 }
             }
         }
@@ -510,7 +573,90 @@ mod tests {
             );
         }
         assert_eq!(FLAG_OWN_PAGE, 1);
-        assert_eq!(ABI_VERSION, 4);
+        assert_eq!((ABI_VERSION, CELL_ABI_VERSION), (4, 5));
+        assert_eq!(FLAG_CELL, 1 << 4);
+        assert_eq!(CONTROLS.abi_version, CELL_ABI_VERSION);
+        assert_eq!(CONTROLS_FLAT.abi_version, ABI_VERSION);
+    }
+
+    #[test]
+    fn the_status_table_and_its_flat_fallback_share_every_row_but_the_kind() {
+        let kinds = |meta: &PluginMeta| -> Vec<RowKind> {
+            meta.options.iter().map(|row| row.kind).collect()
+        };
+        let count = |kinds: &[RowKind], kind| kinds.iter().filter(|found| **found == kind).count();
+        let cells = kinds(&CONTROLS);
+        let flat = kinds(&CONTROLS_FLAT);
+        for kinds in [&cells, &flat] {
+            assert_eq!(kinds.len(), 19);
+            assert_eq!(count(kinds, RowKind::Header), 2);
+            assert_eq!(count(kinds, RowKind::Value), 13);
+        }
+        // Table: one passive line, then three cells (a run of three).
+        assert_eq!(count(&cells, RowKind::Status), 1);
+        assert_eq!(count(&cells, RowKind::Cell), 3);
+        assert_eq!(cells[NEEDS_POOL_ROW], RowKind::Status);
+        assert!(cells[POOL_HOOK_ROW..]
+            .iter()
+            .all(|kind| *kind == RowKind::Cell));
+        // Flat fallback: the same rows as four plain status lines.
+        assert_eq!(count(&flat, RowKind::Status), 4);
+        assert_eq!(count(&flat, RowKind::Cell), 0);
+        assert_eq!(&cells[..NEEDS_POOL_ROW], &flat[..NEEDS_POOL_ROW]);
+        // Table headings are the requested words; the fallback is plain wording.
+        let labels = |meta: &PluginMeta| -> Vec<&'static str> {
+            meta.options[NEEDS_POOL_ROW..]
+                .iter()
+                .map(|row| row.label)
+                .collect()
+        };
+        assert_eq!(labels(&CONTROLS), ["Needs pool", "Pool", "Results", "Save"]);
+        assert_eq!(
+            labels(&CONTROLS_FLAT),
+            ["Needs pool", "Stage filter", "Rematch pick", "Save"]
+        );
+        // Ids, choices and tones are identical, so one `current` answers both.
+        for (cell, plain) in CONTROLS.options.iter().zip(CONTROLS_FLAT.options) {
+            assert_eq!(
+                (cell.id, cell.choices, cell.tones),
+                (plain.id, plain.choices, plain.tones)
+            );
+        }
+        let ids: Vec<&str> = CONTROLS.options[NEEDS_POOL_ROW..]
+            .iter()
+            .map(|row| row.id)
+            .collect();
+        assert_eq!(
+            ids,
+            ["needs_pool", "pool_hook", "result_hook", "save_state"]
+        );
+    }
+
+    #[test]
+    fn only_a_ready_choice_draws_a_check_and_a_pending_save_never_does() {
+        for row in &CONTROLS.options[POOL_HOOK_ROW..] {
+            let tones = row.tones.unwrap();
+            assert_eq!(tones[0], 1, "{}: the first choice is Ready (check)", row.id);
+            assert_eq!(row.choices[0], "Ready");
+            for (choice, tone) in row.choices.iter().zip(tones).skip(1) {
+                assert_ne!(*tone, 1, "{}: {choice} must draw a cross", row.id);
+            }
+        }
+        // Saving is a cross in the warning tone until a save actually succeeds.
+        let save = &CONTROLS.options[SAVE_ROW];
+        assert_eq!(save.choices[1], "Saving");
+        assert_eq!(save.tones.unwrap()[1], 2);
+        let mut busy = ready(Some(all_stages()), Some(Config::default()));
+        busy.busy = true;
+        assert_eq!(
+            current(PageId::Controls, &busy, hooks(), SAVE_ROW),
+            Answer::Choice(1)
+        );
+        finish_save(&mut busy);
+        assert_eq!(
+            current(PageId::Controls, &busy, hooks(), SAVE_ROW),
+            Answer::Choice(0)
+        );
     }
 
     #[test]
@@ -648,10 +794,15 @@ mod tests {
             edit(&mut draft, PageId::Controls, CONTROL_COUNT, 1, |_| true),
             Decision::Rejected
         );
-        assert_eq!(
-            edit(&mut draft, PageId::Controls, NEEDS_POOL_ROW, 1, |_| true),
-            Decision::Rejected
-        );
+        // The host never requests a status row, but a stray request must not
+        // change the draft or queue a save.
+        for row in NEEDS_POOL_ROW..CONTROL_COUNT {
+            assert_eq!(
+                edit(&mut draft, PageId::Controls, row, 1, |_| panic!("queued")),
+                Decision::Rejected,
+                "row {row}"
+            );
+        }
         assert_eq!(draft, before);
 
         draft.busy = true;

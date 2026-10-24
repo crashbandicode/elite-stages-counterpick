@@ -151,8 +151,7 @@ struct Built {
     label: CString,
 }
 
-fn build(id: page::PageId) -> Option<Built> {
-    let meta = id.meta();
+fn build(meta: &page::PluginMeta) -> Option<Built> {
     // These pages own their file writes; host INI persistence is not supported.
     if !meta.own_page || meta.config_path.is_some() {
         return None;
@@ -219,14 +218,30 @@ fn pointers(text: &[CString], range: &Range<usize>) -> Vec<*const c_char> {
     text[range.clone()].iter().map(|text| text.as_ptr()).collect()
 }
 
+/// Registers the status-table layout (descriptor revision 5). A Deluxe that
+/// predates cells answers `REGISTER_ERR_ABI` and registers nothing, so the same
+/// rows are then registered as plain status lines (revision 4). Both layouts
+/// share ids, indices and callbacks. Any other refusal is final.
 fn register(host: &imgui_host::Host, id: page::PageId) -> i32 {
-    let Some(built) = build(id) else {
+    let code = register_layout(host, id, id.meta());
+    if code != abi::REGISTER_ERR_ABI {
+        return code;
+    }
+    skyline::println!(
+        "[CounterpickMenu] {} status table unsupported; registering flat status rows",
+        id.meta().id
+    );
+    register_layout(host, id, id.flat_meta())
+}
+
+fn register_layout(host: &imgui_host::Host, id: page::PageId, meta: &page::PluginMeta) -> i32 {
+    let Some(built) = build(meta) else {
         return abi::REGISTER_ERR_INVALID;
     };
     let (current, request) = callbacks(id);
     let desc = PluginDesc {
         struct_size: core::mem::size_of::<PluginDesc>() as u32,
-        abi_version: page::ABI_VERSION,
+        abi_version: meta.abi_version,
         id: built.id.as_ptr(),
         label: built.label.as_ptr(),
         options: built.options.as_ptr(),
