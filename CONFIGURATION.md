@@ -1,13 +1,15 @@
 # Configuration
 
 Both files live in `sd:/ultimate/elite-legal-stages-public/`. The in-game menu
-(**L + R + D-pad Up**, requires the imgui-smash host) edits both; each file has
-its own save button and neither save rewrites the other file.
+is one Online Deluxe own page, **Stages + Counterpick** (hold **L + R** and
+press **D-pad Down** to reach it; hold **ZR** and press **Left** or **Right**
+to edit). Each accepted row writes one file. A pool edit does not rewrite
+`counterpick.cfg`, and a counterpick edit does not rewrite `settings.toml`.
 
 | File | Feature | Saved by |
 | --- | --- | --- |
-| `settings.toml` | Legal stage pool | **Save stage pool** |
-| `counterpick.cfg` | Optimal counter pick | **Save counterpick preferences** |
+| `settings.toml` | Legal stage pool | **Legal stages** and the stage rows on **Stages + Counterpick** |
+| `counterpick.cfg` | Optimal counter pick | **Counterpick** on **Stages + Counterpick**. Fighter orders stay in this file; the page does not edit them |
 
 The two features are separate. The counterpick only acts while the stage pool
 is enabled with at least one stage. Enabling the pool never enables the
@@ -51,7 +53,8 @@ fighter.richter=battle_field_s,fox_lylatcruise,animal_city
 ```
 
 `schema` and `enabled` are required. `enabled` is the counterpick toggle shown
-as **Optimal counter pick** in the menu. Full-line `#` comments and blank lines
+as **Counterpick** in the menu. Turning that row on or off saves the file with
+the same fighter lines. Full-line `#` comments and blank lines
 are accepted, and spaces around keys, values and commas are ignored. Inline
 comments, quotes and aliases are not supported. Unknown keys, fighters or
 stages, duplicate records or stages, unsupported schemas and malformed values
@@ -111,9 +114,10 @@ or Hollow Bastion to your own profiles; the snapshot makes no claim about them.
 
 ## Saving and recovery
 
-Loading and saving happen at boot and on an explicit menu save, never during
-gameplay frames. A save writes and flushes a temporary file, then replaces the
-destination; on failure, the previous file and active settings remain. An
+Loading happens at boot. A menu change is written on the settings worker, not
+on Deluxe's draw thread and not on a gameplay hook. A save writes and flushes
+a temporary file, then replaces the destination; on failure, the previous file
+and active settings remain and the menu row returns to the saved value. An
 invalid file is reported and preserved, not overwritten. Power-loss durability
 depends on the platform filesystem.
 

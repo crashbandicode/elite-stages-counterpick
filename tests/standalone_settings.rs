@@ -128,7 +128,7 @@ fn pool_missing_file_is_off_with_every_stage_and_writes_nothing() {
 }
 
 #[test]
-fn pool_reads_the_installed_original_file_and_saves_it_back_identically() {
+fn pool_reads_the_installed_original_file_and_preserves_its_selection() {
     let _gate = serial();
     assert_eq!(INSTALLED.len(), 559);
     let dir = Fixture::new();
@@ -140,9 +140,16 @@ fn pool_reads_the_installed_original_file_and_saves_it_back_identically() {
     assert!(view.enabled);
     assert!(!view.stage_pool().contains(Stage::FinalDestination));
     assert!(view.stage_pool().contains(Stage::HollowBastion));
-    // Re-saving the same pool must reproduce the original writer's bytes.
+    // Preserve the original selection; only the menu-help comment changes.
     pool::replace_pool_in(&dir.0, view.enabled, view.selected).unwrap();
-    assert_eq!(fs::read_to_string(dir.pool_file()).unwrap(), INSTALLED);
+    let expected = INSTALLED.replacen(
+        "changed from the in-game menu (L+R+Up).",
+        "changed from the Deluxe menu pages.",
+        1,
+    );
+    assert_eq!(fs::read_to_string(dir.pool_file()).unwrap(), expected);
+    assert_eq!(pool::startup_in(&dir.0), pool::Startup::Ready);
+    assert_eq!(pool::state_word(), 0x107fb);
     assert_eq!(entries(&dir.0), 1);
 }
 

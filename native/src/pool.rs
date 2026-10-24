@@ -31,7 +31,7 @@ static NEXT_TEMP: AtomicU64 = AtomicU64::new(0);
 static WRITER: Mutex<()> = Mutex::new(());
 
 const HEADER: &str = "\
-# elite-legal-stages-public settings, changed from the in-game menu (L+R+Up).\n\
+# elite-legal-stages-public settings, changed from the Deluxe menu pages.\n\
 # safe to delete: the defaults come back (mod off, all stages on).\n\
 # only these stages can be listed: battle_field, battle_field_s, end, yoshi_cartboard, fox_lylatcruise, poke_stadium2, animal_village, poke_kalos, animal_city, ff_cave, trail_castle\n\
 \n";

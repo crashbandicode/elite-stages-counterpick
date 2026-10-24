@@ -22,9 +22,11 @@ build from [Forgejo Releases](https://git.syntaxbyexample.com/intpa/elite-stages
 - **Remove the original Elite Legal Stages NRO.** This plugin replaces it and
   hooks the same game function. If another plugin already owns that hook, this
   plugin refuses to install its own hook.
-- A compatible **imgui-smash host** NRO (ImGui `1.92.7 WIP`) for the in-game
-  menu. This plugin draws through that existing host and never installs its own
-  renderer. Without the host, the menu is unavailable but the files still work.
+- Online Deluxe, recent enough to export plugin API v1 and accept a version-4
+  descriptor (`ssbu_online_deluxe_plugin_api_v1`). Deluxe draws the menu with
+  the game's existing ImGui host. This plugin does not install a renderer or
+  link its own ImGui client. Without Deluxe, the menu is unavailable but the
+  files still work.
 
 Build the release NRO (see [Building](#building)) and copy
 `libelite_stages_counterpick.nro` to
@@ -32,23 +34,28 @@ Build the release NRO (see [Building](#building)) and copy
 
 ## In-game menu
 
-Press **L + R + D-pad Up** to open or close **Legal Stages + Loser Counterpick**.
-This is a separate window drawn by the shared ImGui host, not a page inside
-another plugin's menu.
-Edits are drafts until saved; closing the window discards unsaved edits.
+The settings are one own page in the Online Deluxe window, in the same cycle as
+the other plugins' pages. Hold **L + R** and press **D-pad Down** to walk
+Settings, the shared Plugins page, each own page, Performance, and Window.
+This page is titled **Stages + Counterpick**. Hold **ZR** and press **Left**
+or **Right** to change the selected row. Up and Down move between rows.
 
-- **Enable legal stage pool**, the eleven stage checkboxes and **Save stage
-  pool**. At least one stage must stay checked.
-- **Optimal counter pick** turns the counterpick on or off. The menu warns when
-  the stage pool is not enabled.
-- **Fighter** and **Preferred stage** with **Make first preference** move one
-  stage to the top of that fighter's order. **Clear this fighter's
-  preferences** opts the fighter out. **Save counterpick preferences** saves
-  these settings.
+Each accepted change is written by the settings worker. The draw thread does
+not write files. A refused or failed write leaves the previous file in place
+and puts the row back. Unchecking the last stage is refused.
 
-The two save buttons write different files and do not overwrite each other's
-draft. The menu also reports when a hook is unavailable because the game
-version is incompatible or another plugin owns the site.
+**Stages + Counterpick** has **Legal stages**, the eleven stages, and
+**Counterpick**. **Needs pool** reads Yes while counterpick is on and the pool
+is off. **Pool hook** and **Result hook** read Ready or Unavailable. **Save**
+reads Ready, Saving, Not saved, or No file.
+
+The page does not edit fighter orders. **Counterpick** only turns the feature
+on or off and writes the existing rankings back with that toggle. Edit orders
+in `counterpick.cfg`.
+
+The pool rows and the counterpick toggle write different files. A pool write
+does not replace the counterpick file, and a counterpick write does not replace
+the pool file.
 
 Settings live in `sd:/ultimate/elite-legal-stages-public/`:
 
@@ -89,12 +96,17 @@ your own.
 
 ## Validation
 
-Proven with the current source:
+Validation retained for the unchanged selection policy, plus checks of the new
+Deluxe page:
 
-- 81 host tests, zero-warning Clippy for host and native targets, no-default
-  builds and the native release build passed.
-- In an emulator, the menu saved both files and a fresh process reloaded them.
-  The menu and settings code is unchanged since that test.
+- The preceding standalone build passed 81 host tests. The page change passed
+  eight page/ABI tests and reran sixteen settings tests, with zero-warning
+  Clippy for host and native targets, no-default builds and the release build.
+  These counts overlap; they are not a combined unique-test total.
+- In Training, the Deluxe page appeared alongside the other plugin pages.
+  Both toggles saved, existing fighter rankings stayed intact, and hook/save
+  statuses read Ready. Earlier fresh-process persistence evidence remains
+  applicable to the unchanged file format and storage functions.
 - In an emulator LAN-online Quickplay match with the local player's preferred
   rules on, the remote Mario lost. Both players accepted the rematch, and the game
   loaded Pokemon Stadium 2, Mario's first preference in the test profile.
@@ -108,12 +120,18 @@ Proven with the current source:
   the native rematch timeout. Tests used the standalone plugin with the full
   Training Modpack and no original Elite Legal Stages NRO. The opponent had
   no Skyline NRO plugins installed.
+- With this page build installed on **both** peers and Preferred Rules enabled,
+  the local Brawler lost and both accepted the rematch. The native proposal
+  selected Final Destination and both games loaded that stage. The rematch
+  ran and both eventually returned to character select. Both emulators then
+  exited normally. The second match's automation assertion stopped because its
+  hit counter missed projectile damage; the planned final No/No sequence was
+  not executed, so that sequence is not claimed as a pass.
 
 Not yet proven:
 
 - Any physical Switch test.
-- Both players running this stage picker, or compatibility with arbitrary
-  opponent mods.
+- Compatibility with arbitrary opponent mods.
 
 These are targeted gameplay checks, not a long-running stability certification.
 Test-driver navigation and timed-input failures were recorded separately from
@@ -128,6 +146,7 @@ are in `native/`. Host checks from the repository root:
 cargo test --all-targets --features native-construction-alpha
 cargo clippy --all-targets --features native-construction-alpha -- -D warnings
 cargo build --no-default-features
+cargo test --manifest-path native/Cargo.toml --features adapt-native --lib
 ```
 
 Run the native build from `native/`, using the AArch64 Skyline target:
@@ -136,7 +155,6 @@ Run the native build from `native/`, using the AArch64 Skyline target:
 cargo skyline build --release --no-default-features --features adapt-native
 ```
 
-`COUNTERPICK_IMGUI_DIR` must point to the directory with the pinned
-`libimgui_smash.a` archive and its `.sha256` file, as checked by
-`native/build.rs`. Without `adapt-native`, the build installs no hooks.
-The original plugin binary and game assets are not included.
+Without `adapt-native`, the build installs no hooks. The native plugin
+resolves Deluxe at runtime and does not link an ImGui client. The original
+plugin binary and game assets are not included.
