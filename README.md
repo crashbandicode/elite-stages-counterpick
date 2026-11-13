@@ -54,7 +54,16 @@ page shows): ZR + Right sets **Legal stages** On, Down, ZR + Left unchecks
 Battlefield, ZR + Right checks it again; `settings.toml` is rewritten each
 time. The window (top right) is repeated 2× at the top left so it reads; the
 controller at the bottom is Smash Gamepad Overlay showing the inputs. The pool's
-effect on the game's stage pick is not shown here.*
+effect on the game's stage pick is in the next GIF.*
+
+![The Stages + Counterpick page with Legal stages On and only Lylat Cruise checked, then a Quickplay match that starts on Lylat Cruise](docs/media/stages-pool-lylat.gif)
+
+*A LAN-online Quickplay match in Eden, 2026-11-13, the same release NRO on
+both players, each with `settings.toml` set to `enabled = true` and only
+`fox_lylatcruise`. Both profiles' Preferred Rules use the stage form Hazards
+Off, so the stage loads in its normal form. Part 1: L + R + Down to the page
+(enlarged at the top), Legal stages On and only Lylat Cruise On. Part 2: the
+match's countdown on Lylat Cruise. Both games logged the same stage.*
 
 Each accepted change is written by the settings worker. The draw thread does
 not write files. A refused or failed write leaves the previous file in place
@@ -176,8 +185,10 @@ Not yet proven:
 - Online play through Nintendo's servers (Quickplay, including Elite Smash),
   offline modes and local wireless. Every match above was emulator LAN-online
   Quickplay.
-- The stage pool on its own: no recorded match checked that an unchecked
-  stage is never picked. The matches above checked the counterpick.
+- The stage pool on its own, beyond one match: with a Lylat Cruise-only pool
+  on both peers, one emulator LAN-online Quickplay match loaded Lylat Cruise
+  (the GIF above). One match does not show that an unchecked stage is never
+  picked. The other matches above checked the counterpick.
 - Compatibility with arbitrary opponent mods.
 
 These are targeted gameplay checks, not a long-running stability certification.
