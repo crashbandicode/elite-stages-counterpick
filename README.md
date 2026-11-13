@@ -16,9 +16,8 @@ start disabled.
 **Status: experimental and unstable until physical-Switch review.** Read
 [Validation](#validation) before relying on it. Download the emulator-tested
 build from [Forgejo Releases](https://git.syntaxbyexample.com/intpa/elite-stages-counterpick/releases).
-The release ZIP also holds the older Online Deluxe build it was tested with. If
-you already have Online Deluxe 0.8.0 or later, copy only
-`libelite_stages_counterpick.nro`.
+The release ZIP holds only this plugin's NRO. Install Online Deluxe from
+[its own release](https://git.syntaxbyexample.com/intpa/ssbu-online-deluxe-rewrite/releases/latest).
 
 ## Requirements and installation
 
