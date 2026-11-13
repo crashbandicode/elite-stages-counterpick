@@ -46,6 +46,16 @@ it, each plugin's own page, Performance, Window Options) until
 press **Left** or **Right** to change the selected row. Up and Down move
 between rows.
 
+![Stages + Counterpick in Deluxe's window: ZR + Right turns Legal stages On, then Battlefield is unchecked with ZR + Left and checked again with ZR + Right](docs/media/stages-counterpick-page.gif)
+
+*Training in Eden, 2026-11-13, the v0.1.0-alpha.3 release NRO (`584a3699…`)
+with Online Deluxe 0.10.5 (`hide_plugin_pages` removed from its config so the
+page shows): ZR + Right sets **Legal stages** On, Down, ZR + Left unchecks
+Battlefield, ZR + Right checks it again; `settings.toml` is rewritten each
+time. The window (top right) is repeated 2× at the top left so it reads; the
+controller at the bottom is Smash Gamepad Overlay showing the inputs. The pool's
+effect on the game's stage pick is not shown here.*
+
 Each accepted change is written by the settings worker. The draw thread does
 not write files. A refused or failed write leaves the previous file in place
 and puts the row back. Unchecking the last stage is refused.
