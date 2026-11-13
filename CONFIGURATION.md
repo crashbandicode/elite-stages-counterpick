@@ -79,13 +79,17 @@ fighter.little_mac=end,poke_stadium2
 fighter.richter=battle_field_s,fox_lylatcruise,animal_city
 ```
 
-`schema` and `enabled` are required. `enabled` is the counterpick toggle shown
-as **Counterpick** in the menu. Turning that row on or off saves the file with
-the same fighter lines. Full-line `#` comments and blank lines
+`schema` and `enabled` are required. Full-line `#` comments and blank lines
 are accepted, and spaces around keys, values and commas are ignored. Inline
 comments, quotes and aliases are not supported. Unknown keys, fighters or
 stages, duplicate records or stages, unsupported schemas and malformed values
 produce a line-numbered error.
+
+`enabled` is the counterpick toggle shown as **Counterpick** in the menu.
+Turning that row on or off rewrites the whole file with the same fighter
+orders, in canonical form: `schema`, `enabled`, then one line per fighter in
+`src/roster.rs` order. Comments and blank lines are not kept. With no file
+yet, that first save writes the shipped defaults (below) with the new toggle.
 
 Each fighter record lists stages from first to last preference. On an accepted
 online 1v1 rematch, the plugin uses the loser's record and picks the first stage
@@ -152,6 +156,38 @@ For library users: `Config::parse` builds a complete candidate before anything
 changes, `Config::set_enabled` and `set_ranking` edit a draft, and
 `Config::serialize` returns canonical text. With the `std` feature,
 `storage::ConfigStore` loads and saves `counterpick.cfg` only.
+
+## The Deluxe page
+
+The plugin looks up Online Deluxe's plugin API
+(`ssbu_online_deluxe_plugin_api_v1`, table version 1) at startup. It links no
+ImGui client and installs no renderer; Deluxe draws the rows with the renderer
+of its own window.
+
+- It first registers the status-table layout: descriptor revision 5, with
+  **Pool**, **Results** and **Save** as cell rows. Deluxe 0.8.0 and later
+  accept it.
+- An older Deluxe answers `REGISTER_ERR_ABI` and registers nothing. The plugin
+  then registers the same rows as a revision 4 descriptor, with the four
+  status rows as plain lines. Deluxe 0.5.3 and later accept that.
+- Without Deluxe, or when its API table is refused, there is no page. The
+  stage pool and counterpick hooks don't depend on Deluxe.
+
+## Where each feature acts
+
+From the code (`native/src/filter.rs`, `native/src/hooks.rs`), not from tests:
+
+- **Stage pool.** It filters one game check, the stage-eligibility function
+  the original Elite plugin also hooks, and only when that check is called
+  from one site (main+0x3271a30); the function's other direct caller keeps the
+  game's answer. The plugin has no game-mode check of its own, and which modes
+  reach that site has not been mapped.
+- **Counterpick.** It needs the game's online-match markers, exactly two
+  players and one winner, and acts only on the stage pick built right after
+  that result with Preferred Rules on.
+
+The only recorded match tests were emulator LAN-online Quickplay; see the
+README's Validation section.
 
 ## Test status
 
