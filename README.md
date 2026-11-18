@@ -217,3 +217,7 @@ cargo skyline build --release --no-default-features --features adapt-native
 Without `adapt-native`, the build installs no hooks. The native plugin
 resolves Deluxe at runtime and does not link an ImGui client. The original
 plugin binary and game assets are not included.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
