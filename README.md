@@ -21,7 +21,8 @@ The release ZIP holds only this plugin's NRO. Install Online Deluxe from
 
 ## Requirements and installation
 
-- Smash Ultimate 13.0.5 with Skyline.
+- Tested on: Super Smash Bros. Ultimate 13.0.5 · Switch firmware 23.5.0 · Atmosphère 1.12.2
+- Requires Skyline.
 - **Remove the original Elite Legal Stages NRO.** This plugin replaces it and
   hooks the same game function. If another plugin already owns that hook, this
   plugin refuses to install its own hook.
